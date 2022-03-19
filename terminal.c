@@ -1,19 +1,24 @@
 #include "io.h"
 
-static unsigned char buffer[100];
-
 char* scan() {
+    static unsigned char buffer[100];
     int index = 0;
     while(1) {
         if (in(0x03fd) % 2) {
             unsigned char inByte = in(0x03f8);
             if (inByte == '\r') {
-                buffer[index] = '\r';
-                buffer[index + 1] = '\n';
-                buffer[index + 2] = 0;
+                buffer[index] = 0;
                 out(0x03f8, '\r');
                 out(0x03f8, '\n');
                 return buffer;
+            }
+            else if (inByte == '\b') {
+                if (index != 0) {
+                    index--;
+                    out(0x03f8, '\b');
+                    out(0x03f8, ' ');
+                    out(0x03f8, '\b');
+                }
             }
             else {
                 buffer[index] = inByte;
