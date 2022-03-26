@@ -1,0 +1,7 @@
+label: dos
+label-id: 0xd8d4b13c
+device: myos.img
+unit: sectors
+sector-size: 512
+
+myos.img1 : start=        2048, size=       18432, type=83

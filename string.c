@@ -5,7 +5,6 @@ int strlen(char* string) {
     }
     return length;
 }
-
 int strcmp(char* string1, char* string2) {
     if (strlen(string1) == strlen(string2)) {
         for (int i = 0; string1[i] != 0; i++) {
@@ -24,7 +23,13 @@ void strcpy(char* source, char* dest) {
         dest[i] = source[i];
     }
 }
-
+char* strcat(char* string1, char* string2) {
+    static char buffer[100];
+    strcpy(string1, buffer);
+    strcpy(string2, buffer + strlen(string1));
+    buffer[strlen(string1) + strlen(string2)] = 0;
+    return buffer;
+}
 // itoa implementation from geeksforgeeks
 
 /* A utility function to reverse a string  */
