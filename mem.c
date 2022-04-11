@@ -14,6 +14,6 @@ void memcpy(char* source, char* dest, int length) {
 
 void memset(char* dest, char val, int length) {
     for (int i = 0; i < length; i++) {
-        *(dest + i) = val;
+        dest[i] = val;
     }
 }
