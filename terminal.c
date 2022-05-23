@@ -1,7 +1,6 @@
 #include "io.h"
 
-char* scan() {
-    static unsigned char buffer[100];
+void scan(char* buffer) {
     int index = 0;
     while(1) {
         if (in(0x03fd) % 2) {
@@ -10,7 +9,7 @@ char* scan() {
                 buffer[index] = 0;
                 out(0x03f8, '\r');
                 out(0x03f8, '\n');
-                return buffer;
+                return;
             }
             else if (inByte == '\b') {
                 if (index != 0) {

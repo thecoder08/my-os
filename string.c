@@ -23,12 +23,10 @@ void strcpy(char* source, char* dest) {
         dest[i] = source[i];
     }
 }
-char* strcat(char* string1, char* string2) {
-    static char buffer[100];
+void strcat(char* string1, char* string2, char* buffer) {
     strcpy(string1, buffer);
     strcpy(string2, buffer + strlen(string1));
     buffer[strlen(string1) + strlen(string2)] = 0;
-    return buffer;
 }
 // itoa implementation from geeksforgeeks
 
