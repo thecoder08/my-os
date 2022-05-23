@@ -60,11 +60,11 @@ void writeChar(char character) {
 	if (currentY > 24) {
 		currentY = 0;
 	}
+	setCursor(currentX, currentY);
 }
 
 void vgaPrint(char* string) {
 	for (int i = 0; string[i] != 0; i++) {
 		writeChar(string[i]);
 	}
-	setCursor(currentX, currentY);
 }
