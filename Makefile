@@ -26,7 +26,7 @@ kernel.elf: ${OBJ}
 	nasm -f elf32 $^ -o $@
 
 %.o: %.c
-	gcc -ffreestanding -m32 -c $^ -o $@
+	gcc -ffreestanding -m32 -Wall -Wno-trigraphs -c $^ -o $@
 
 clean:
 	rm -f *.o *.elf *.img build
