@@ -21,4 +21,4 @@ Use
 ```
 make myos.img
 ```
-To build a 10MB hard disk image that can be flashed to a USB drive for testing.
+To build a 10MB hard disk image that can be flashed to a USB drive for testing. (Needs `grub2` and `grub-pc-bin`)
