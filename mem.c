@@ -3,8 +3,9 @@
 char* heap = (char*) 0x00010000;
 
 char* malloc(int bytes) {
+    char* result = heap;
     heap += bytes;
-    return heap;
+    return result;
 }
 void memcpy(char* source, char* dest, int length) {
     for (int i = 0; i < length; i++) {
