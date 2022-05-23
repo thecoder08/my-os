@@ -12,7 +12,7 @@ void scan(char* buffer) {
                 return;
             }
             else if (inByte == '\b') {
-                if (index != 0) {
+                if (index > 0) {
                     index--;
                     out(0x03f8, '\b');
                     out(0x03f8, ' ');
