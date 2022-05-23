@@ -12,7 +12,6 @@ void kmain() {
             if (strcmp(input, "help")) {
                   print("My OS is based on the concept of modules. Modules are independent programs that run in ring-0. This means that they have full access to the hardware. Modules register themselves with the kernel to provide a command the user can run.\r\n");
                   print("Loaded modules:\r\n");
-                  print("hi\r\n");
             }
             else {
                   print(strcat("I'm not sure what \"", input));
