@@ -13,8 +13,8 @@ void kmain() {
             if (strcmp(input, "help")) {
                   print("help: Print this message.\r\n");
                   print("clear: Clear the screen.\r\n");
-                  print("cttyVGA: Change the TTY to VGA.");
-                  print("cttySERIAL: Change the TTY to serial.");
+                  print("cttyVGA: Change the TTY to VGA.\r\n");
+                  print("cttySERIAL: Change the TTY to serial.\r\n");
                   print("halt: Stop the OS.\r\n");
             }
             else if (strcmp(input, "clear")) {
