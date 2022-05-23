@@ -6,7 +6,7 @@
 void kmain() {
       char* input = malloc(100);
       clear(' ', 0x07);
-      print("Welcome to My OS! Use the \"help\" command for help. Loading programs from disk isn't yet supported so only builtin commands are supported,\r\n");
+      print("Welcome to My OS! Use the \"help\" command for help. Loading programs from disk isn't yet supported so only builtin commands will work.\r\n");
       while (1) {
             print("> ");
             scan(input);
