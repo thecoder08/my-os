@@ -1,20 +1,21 @@
 #include "terminal.h"
 #include "mem.h"
 #include "string.h"
+#include "vga.h"
 
 void kmain() {
       char* input = malloc(100);
       clear(' ', 0x07);
       print("Welcome to My OS! Use the \"help\" command for help. Loading programs from disk isn't yet supported so only builtin commands are supported,\r\n");
       while (1) {
-            vgaPrint("> ");
-            keyboardScan(input);
+            print("> ");
+            scan(input);
             if (strcmp(input, "help")) {
-                  vgaPrint("help: Print this message.\r\n");
-                  vgaPrint("clear: Clear the screen.\r\n");
-                  vgaPrint("cttyVGA: Change the TTY to VGA.");
-                  vgaPrint("cttySERIAL: Change the TTY to serial.");
-                  vgaPrint("halt: Stop the OS.\r\n");
+                  print("help: Print this message.\r\n");
+                  print("clear: Clear the screen.\r\n");
+                  print("cttyVGA: Change the TTY to VGA.");
+                  print("cttySERIAL: Change the TTY to serial.");
+                  print("halt: Stop the OS.\r\n");
             }
             else if (strcmp(input, "clear")) {
                   clear(' ', 0x07);
@@ -29,9 +30,9 @@ void kmain() {
                   while(1);
             }
             else {
-                  vgaPrint("I'm not sure what \"");
-                  vgaPrint(input);
-                  vgaPrint("\" means.\r\n");
+                  print("I'm not sure what \"");
+                  print(input);
+                  print("\" means.\r\n");
             }
       }
 }
