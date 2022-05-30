@@ -27,9 +27,7 @@ void keyboardScan(char* buffer) {
                 else if (inbyte == 0x0e) {
                     if (i > 0) {
                         i--;
-                        writeChar('\b');
-                        writeChar(' ');
-                        writeChar('\b');
+                        vgaPrint("\b \b");
                     }
                 }
                 else {
