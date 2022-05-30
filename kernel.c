@@ -2,6 +2,7 @@
 #include "mem.h"
 #include "string.h"
 #include "vga.h"
+#include "fdc.h"
 
 void kmain() {
       char* input = malloc(100);
@@ -10,7 +11,8 @@ void kmain() {
       while (1) {
             print("> ");
             scan(input);
-            if (strcmp(input, "help")) {
+            if (strcmp(input, "")) {}
+            else if (strcmp(input, "help")) {
                   print("help: Print this message.\r\n");
                   print("clear: Clear the screen.\r\n");
                   print("cttyVGA: Change the TTY to VGA.\r\n");
@@ -28,6 +30,18 @@ void kmain() {
             }
             else if (strcmp(input, "halt")) {
                   while(1);
+            }
+            else if (strcmp(input, "read")) {
+                  char* block = malloc(512);
+                  read_blocks(1, 0, 0, block);
+                  print(block);
+            }
+            else if (strcmp(input, "write")) {
+                  char* block = malloc(512);
+                  block[0] = 'y';
+                  block[1] = 'o';
+                  block[2] = 0;
+                  write_blocks(1, 0, 0, block);
             }
             else {
                   print("I'm not sure what \"");
