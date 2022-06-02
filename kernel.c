@@ -5,7 +5,7 @@
 #include "fdc.h"
 
 void kmain() {
-      char* input = malloc(100);
+      char* input = malloc(0x100);
       clear(' ', 0x07);
       print("Welcome to My OS! Use the \"help\" command for help. Loading programs from disk isn't yet supported so only builtin commands will work.\r\n");
       while (1) {

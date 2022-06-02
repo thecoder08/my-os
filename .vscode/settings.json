@@ -1,3 +1,10 @@
 {
-    "makefile.extensionOutputFolder": "./.vscode"
+    "makefile.extensionOutputFolder": "./.vscode",
+    "makefile.launchConfigurations": [
+        {
+            "cwd": "/home/lennonmclean/github/my-os",
+            "binaryPath": "/home/lennonmclean/github/my-os/kernel.elf",
+            "binaryArgs": []
+        }
+    ]
 }

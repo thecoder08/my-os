@@ -62,7 +62,7 @@ void writeChar(char character) {
 		currentY++;
 	}
 	if (currentY > 24) {
-		currentY = 0;
+		clear(' ', 0x07);
 	}
 	setCursor(currentX, currentY);
 }
