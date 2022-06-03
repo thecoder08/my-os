@@ -6,7 +6,6 @@
 #define MAGENTA 5
 #define BROWN 6
 #define LIGHT_GRAY 7
-
 #define DARK_GRAY 8
 #define LIGHT_BLUE 9
 #define LIGHT_GREEN A
