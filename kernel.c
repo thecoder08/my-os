@@ -19,6 +19,8 @@ void kmain() {
                   print("cttyVGA: Change the TTY to VGA.\r\n");
                   print("cttySERIAL: Change the TTY to serial.\r\n");
                   print("halt: Stop the OS.\r\n");
+                  print("write: Write a block of data to floppy drive.\r\n");
+                  print("read: Read a block of data from floppy drive.\r\n");
             }
             else if (strcmp(input, "clear")) {
                   clear(' ', 0x07);
