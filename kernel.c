@@ -19,8 +19,7 @@ void kmain() {
                   print("cttyVGA: Change the TTY to VGA.\r\n");
                   print("cttySERIAL: Change the TTY to serial.\r\n");
                   print("halt: Stop the OS.\r\n");
-                  print("write: Write a block of data to floppy drive.\r\n");
-                  print("read: Read a block of data from floppy drive.\r\n");
+                  print("floppy: Try reading from the floppy drive.\r\n");
             }
             else if (strcmp(input, "clear")) {
                   clear(' ', 0x07);
@@ -34,17 +33,10 @@ void kmain() {
             else if (strcmp(input, "halt")) {
                   while(1);
             }
-            else if (strcmp(input, "read")) {
-                  char* block = malloc(512);
-                  read_blocks(1, 0, 0, block);
-                  print(block);
-            }
-            else if (strcmp(input, "write")) {
-                  char* block = malloc(512);
-                  block[0] = 'y';
-                  block[1] = 'o';
-                  block[2] = 0;
-                  write_blocks(1, 0, 0, block);
+            else if (strcmp(input, "floppy")) {
+                  char* buffer = malloc(512);
+                  read_blocks(1, 0, 0, buffer);
+                  print(buffer);
             }
             else {
                   print("I'm not sure what \"");

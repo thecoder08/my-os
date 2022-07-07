@@ -11,6 +11,9 @@ jobs:
       - name: Get repository code
         uses: actions/checkout@v2
 
+      - name: Install NASM
+        run: sudo apt install nasm -y
+        
       - name: Build Image
         run: make myos.img
 
