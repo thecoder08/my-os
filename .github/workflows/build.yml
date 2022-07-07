@@ -1,0 +1,21 @@
+name: Build My OS
+
+on:
+  [push, workflow_dispatch]
+
+jobs:
+  build:
+    name: Build image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get repository code
+        uses: actions/checkout@v2
+
+      - name: Build Image
+        run: make myos.img
+
+      - name: Upload image
+        uses: actions/upload-artifact@v2
+        with:
+          name: myos.img
+          path: myos.img
