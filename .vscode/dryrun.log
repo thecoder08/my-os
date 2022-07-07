@@ -1,5 +1,6 @@
 make kernel.elf --dry-run --keep-going --print-directory
 make: Entering directory '/home/lennonmclean/github/my-os'
-make: 'kernel.elf' is up to date.
+gcc -ffreestanding -m32 -Wall -Wno-trigraphs -c mouse.c -o mouse.o
+ld -melf_i386 -e kmain -Tdata 0x0 -Ttext 0x1000 fdc.o fs.o io.o kernel.o keyboard.o mem.o mouse.o ps2.o serial.o string.o terminal.o vga.o multiboot.o -o kernel.elf
 make: Leaving directory '/home/lennonmclean/github/my-os'
  

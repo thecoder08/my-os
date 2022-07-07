@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Wed Jul  6 22:37:22 2022
+# Make data base, printed on Wed Jul  6 22:49:09 2022
 
 # Variables
 
@@ -227,9 +227,9 @@ GDMSESSION = pop
 
 # Directories
 
-# . (device 66310, inode 4834220): 49 files, no impossibilities.
+# . (device 66310, inode 4834220): 50 files, no impossibilities.
 
-# 49 files, no impossibilities in 1 directories.
+# 50 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -272,7 +272,7 @@ kernel.o:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-06 22:37:17.438011375
+#  Last modified 2022-07-06 22:47:57.598373052
 #  File has been updated.
 #  Successfully updated.
 
@@ -359,15 +359,15 @@ myos.img: kernel.elf grub.cfg myos.sfdisk
 #  recipe to execute (from 'Makefile', line 9):
 	dd if=/dev/zero of=$@ bs=1024 count=10240
 	cat myos.sfdisk | sfdisk $@
-	sudo losetup -P loop0 $@
-	sudo mkfs.vfat /dev/loop0p1
+	sudo losetup -P loop8 $@
+	sudo mkfs.vfat /dev/loop8p1
 	mkdir build
-	sudo mount /dev/loop0p1 build
+	sudo mount /dev/loop8p1 build
 	sudo cp kernel.elf build
-	sudo grub-install --boot-directory=build --target=i386-pc /dev/loop0
+	sudo grub-install --boot-directory=build --target=i386-pc /dev/loop8
 	sudo cp grub.cfg build/grub
 	sudo umount build
-	sudo losetup -d /dev/loop0
+	sudo losetup -d /dev/loop8
 	rmdir build
 
 # Not a target:
@@ -402,12 +402,12 @@ grub.cfg:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 60 / storage = 478 B / avg = 7 B
-# current buf: size = 8162 B / used = 478 B / count = 60 / avg = 7 B
+# strcache buffers: 1 (0) / strings = 61 / storage = 486 B / avg = 7 B
+# current buf: size = 8162 B / used = 486 B / count = 61 / avg = 7 B
 
-# strcache performance: lookups = 87 / hit rate = 31%
+# strcache performance: lookups = 88 / hit rate = 30%
 # hash-table stats:
-# Load=60/8192=1%, Rehash=0, Collisions=0/87=0%
-# Finished Make data base on Wed Jul  6 22:37:22 2022
+# Load=61/8192=1%, Rehash=0, Collisions=0/88=0%
+# Finished Make data base on Wed Jul  6 22:49:09 2022
 
  

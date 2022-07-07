@@ -61,8 +61,8 @@ void read_blocks(int blocks, int drive, int lba, char* buffer) {
     int sector;
     lba_to_chs(lba, &head, &track, &sector);
     // send read command and parameters
-    unsigned char params[]  = {(head << 2) | drive, track, head, sector, 2, SECTORS_PER_TRACK, 0x1b, 0xff};
-    send_command(0x80 | 0x40 | 0x06, params, buffer, 1, (unsigned char*) 0);
+    char params[]  = {(head << 2) | drive, track, head, sector, 2, SECTORS_PER_TRACK, 0x1b, 0xff};
+    send_command(0x80 | 0x40 | 0x06, params, buffer, 1, (char*) 0);
     // turn off motor
     out(0x3f2, 0);
 }
