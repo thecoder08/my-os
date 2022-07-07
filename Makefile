@@ -8,15 +8,15 @@ run: kernel.elf
 myos.img: kernel.elf grub.cfg myos.sfdisk
 	dd if=/dev/zero of=$@ bs=1024 count=10240
 	cat myos.sfdisk | sfdisk $@
-	sudo losetup -P loop0 $@
-	sudo mkfs.vfat /dev/loop0p1
+	sudo losetup -P loop8 $@
+	sudo mkfs.vfat /dev/loop8p1
 	mkdir build
-	sudo mount /dev/loop0p1 build
+	sudo mount /dev/loop8p1 build
 	sudo cp kernel.elf build
-	sudo grub-install --boot-directory=build --target=i386-pc /dev/loop0
+	sudo grub-install --boot-directory=build --target=i386-pc /dev/loop8
 	sudo cp grub.cfg build/grub
 	sudo umount build
-	sudo losetup -d /dev/loop0
+	sudo losetup -d /dev/loop8
 	rmdir build
 
 kernel.elf: ${OBJ}
