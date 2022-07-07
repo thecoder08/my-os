@@ -3,8 +3,8 @@
     "makefile.launchConfigurations": [
         {
             "cwd": "/home/lennonmclean/github/my-os",
-            "binaryPath": "/home/lennonmclean/github/my-os/kernel.elf",
-            "binaryArgs": []
+            "binaryPath": "/usr/bin/qemu-system-x86_64",
+            "binaryArgs": ["-kernel", "kernel.elf"]
         }
     ]
 }
