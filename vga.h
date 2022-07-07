@@ -5,3 +5,4 @@ void disableCursor();
 void clear(char character, char color);
 void writeChar(char character);
 void vgaPrint(char* string);
+void setVideoMode(int mode);
