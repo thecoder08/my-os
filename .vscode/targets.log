@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Wed Jul  6 22:49:09 2022
+# Make data base, printed on Fri Jul  8 22:51:39 2022
 
 # Variables
 
@@ -25,7 +25,7 @@ SSH_AGENT_LAUNCHER = gnome-keyring
 # environment
 GJS_DEBUG_OUTPUT = stderr
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-1d9a24e2-07dd-4110-92ff-7246d153758d.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-505b3482-3343-42ae-bc64-4eff3a4d82ed.sock
 # environment
 MANDATORY_PATH = /usr/share/gconf/pop.mandatory.path
 # environment
@@ -97,7 +97,7 @@ MAKEFILE_LIST := Makefile
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 437237
+VSCODE_PID = 506105
 # environment
 XDG_SESSION_TYPE = x11
 # automatic
@@ -183,7 +183,7 @@ MAKE_VERSION := 4.3
 # environment
 MANAGERPID = 2497
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 437237
+GIO_LAUNCHED_DESKTOP_FILE_PID = 506105
 # environment
 PYTHONPATH = /usr/lib/python2.7 /usr/lib/python3 /usr/lib/python3.10/site-packages:/usr/lib/python2.7 /usr/lib/python3 /usr/lib/python3.10/site-packages:
 # environment
@@ -281,6 +281,7 @@ serial.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
+ 
 
 # Not a target:
 fdc.o:
@@ -322,7 +323,6 @@ mouse.o:
 # Not a target:
 .DEFAULT:
 #  Implicit rule search has not been done.
- 
 #  Modification time never checked.
 #  File has not been updated.
 
@@ -408,6 +408,6 @@ grub.cfg:
 # strcache performance: lookups = 88 / hit rate = 30%
 # hash-table stats:
 # Load=61/8192=1%, Rehash=0, Collisions=0/88=0%
-# Finished Make data base on Wed Jul  6 22:49:09 2022
+# Finished Make data base on Fri Jul  8 22:51:39 2022
 
  
