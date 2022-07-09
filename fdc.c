@@ -1,5 +1,6 @@
 #include "io.h"
 #include "serial.h"
+#include "string.h"
 #define SECTORS_PER_TRACK 18
 
 void lba_to_chs(int lba, int *head, int *track, int *sector) {
@@ -17,13 +18,16 @@ void send_command(char command, char* params, char* data, int inorout, char* res
     }
     // send command byte
     out(0x3f5, command);
+    serialPrint("SENT COMMAND\r\n");
     // send parameter bytes
     for (int i = 0; in(0x0f4) & 0x40; i++)
     {
+        serialPrint(itoa(params[i], 16));
+        serialPrint("\r\n");
         while(in(0x3f4) & 0x80);
         out(0x3f5, params[i]);
     }
-    serialPrint("SENT COMMAND AND PARAMETERS\r\n");
+    serialPrint("SENT PARAMETERS\r\n");
     // if the command has an execution phase
     if (in(0x3f4) & 0x20) {
         serialPrint("WE DO HAVE AN EXECUTION PHASE\r\n");

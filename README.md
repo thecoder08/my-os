@@ -12,7 +12,8 @@ It supports:
 - [ ] Floppy disk driver (In progress)
 - [ ] Filesystem (Maybe FAT) (will be worked on when FDC driver is done)
 - [ ] Modesetting VGA driver, with support for text and 256 color graphics modes
-- [ ] Hard disk support (eventually)
+- [ ] Graphical Shell
+- [ ] Hard disk support
 
 ## Running the OS
 Use
