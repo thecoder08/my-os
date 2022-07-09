@@ -12,7 +12,7 @@ It supports:
 - [ ] Floppy disk driver (In progress)
 - [ ] Filesystem (Maybe FAT) (will be worked on when FDC driver is done)
 - [ ] Modesetting VGA driver, with support for text and 256 color graphics modes
-- [ ] Graphical Shell
+- [ ] Graphical Shell with terminal emulator, calculator, text editor, and a toolkit to make more applications.
 - [ ] Hard disk support
 
 ## Running the OS
