@@ -8,11 +8,11 @@ It supports:
 - [x] Terminal driver, with multiplexing between Serial and VGA/Keyboard
 - [x] A simple shell, with support for basic commands
 - [x] Basic libc with utility functions (strlen, strcmp, strcpy, strcat, reverse, itoa, memcpy, memset)
-- [] Dynamic memory allocation (half done, currently malloc just returns an increasing pointer and cannot be free'd)
-- [] Floppy disk driver (In progress)
-- [] Filesystem (Maybe FAT) (will be worked on when FDC driver is done)
-- [] Modesetting VGA driver, with support for text and 256 color graphics modes
-- [] Hard disk support (eventually)
+- [ ] Dynamic memory allocation (half done, currently malloc just returns an increasing pointer and cannot be free'd)
+- [ ] Floppy disk driver (In progress)
+- [ ] Filesystem (Maybe FAT) (will be worked on when FDC driver is done)
+- [ ] Modesetting VGA driver, with support for text and 256 color graphics modes
+- [ ] Hard disk support (eventually)
 
 ## Running the OS
 Use
