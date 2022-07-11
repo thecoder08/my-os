@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Fri Jul  8 22:51:39 2022
+# Make data base, printed on Sun Jul 10 21:39:09 2022
 
 # Variables
 
@@ -25,7 +25,7 @@ SSH_AGENT_LAUNCHER = gnome-keyring
 # environment
 GJS_DEBUG_OUTPUT = stderr
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-505b3482-3343-42ae-bc64-4eff3a4d82ed.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-af712999-a01b-428b-a21e-84f763bb5d8f.sock
 # environment
 MANDATORY_PATH = /usr/share/gconf/pop.mandatory.path
 # environment
@@ -97,7 +97,7 @@ MAKEFILE_LIST := Makefile
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 506105
+VSCODE_PID = 545859
 # environment
 XDG_SESSION_TYPE = x11
 # automatic
@@ -183,7 +183,7 @@ MAKE_VERSION := 4.3
 # environment
 MANAGERPID = 2497
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 506105
+GIO_LAUNCHED_DESKTOP_FILE_PID = 545859
 # environment
 PYTHONPATH = /usr/lib/python2.7 /usr/lib/python3 /usr/lib/python3.10/site-packages:/usr/lib/python2.7 /usr/lib/python3 /usr/lib/python3.10/site-packages:
 # environment
@@ -227,9 +227,9 @@ GDMSESSION = pop
 
 # Directories
 
-# . (device 66310, inode 4834220): 50 files, no impossibilities.
+# . (device 66310, inode 4834220): 52 files, no impossibilities.
 
-# 50 files, no impossibilities in 1 directories.
+# 52 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -250,7 +250,13 @@ vga.o:
 #  Modification time never checked.
 #  File has not been updated.
 
-kernel.elf: fdc.o fs.o io.o kernel.o keyboard.o mem.o mouse.o ps2.o serial.o string.o terminal.o vga.o multiboot.o
+# Not a target:
+parallel.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+kernel.elf: fdc.o fs.o io.o kernel.o keyboard.o mem.o mouse.o parallel.o ps2.o serial.o string.o terminal.o vga.o multiboot.o
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -275,13 +281,13 @@ Makefile:
 #  Last modified 2022-07-06 22:47:57.598373052
 #  File has been updated.
 #  Successfully updated.
+ 
 
 # Not a target:
 serial.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
- 
 
 # Not a target:
 fdc.o:
@@ -395,19 +401,19 @@ grub.cfg:
 #  File has not been updated.
 
 # files hash-table stats:
-# Load=23/1024=2%, Rehash=0, Collisions=0/51=0%
+# Load=24/1024=2%, Rehash=0, Collisions=0/53=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 61 / storage = 486 B / avg = 7 B
-# current buf: size = 8162 B / used = 486 B / count = 61 / avg = 7 B
+# strcache buffers: 1 (0) / strings = 64 / storage = 519 B / avg = 8 B
+# current buf: size = 8162 B / used = 519 B / count = 64 / avg = 8 B
 
-# strcache performance: lookups = 88 / hit rate = 30%
+# strcache performance: lookups = 91 / hit rate = 29%
 # hash-table stats:
-# Load=61/8192=1%, Rehash=0, Collisions=0/88=0%
-# Finished Make data base on Fri Jul  8 22:51:39 2022
+# Load=64/8192=1%, Rehash=0, Collisions=0/91=0%
+# Finished Make data base on Sun Jul 10 21:39:09 2022
 
  

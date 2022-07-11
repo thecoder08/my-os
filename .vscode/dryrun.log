@@ -7,12 +7,13 @@ gcc -ffreestanding -m32 -Wall -Wno-trigraphs -c kernel.c -o kernel.o
 gcc -ffreestanding -m32 -Wall -Wno-trigraphs -c keyboard.c -o keyboard.o
 gcc -ffreestanding -m32 -Wall -Wno-trigraphs -c mem.c -o mem.o
 gcc -ffreestanding -m32 -Wall -Wno-trigraphs -c mouse.c -o mouse.o
+gcc -ffreestanding -m32 -Wall -Wno-trigraphs -c parallel.c -o parallel.o
 gcc -ffreestanding -m32 -Wall -Wno-trigraphs -c ps2.c -o ps2.o
 gcc -ffreestanding -m32 -Wall -Wno-trigraphs -c serial.c -o serial.o
 gcc -ffreestanding -m32 -Wall -Wno-trigraphs -c string.c -o string.o
 gcc -ffreestanding -m32 -Wall -Wno-trigraphs -c terminal.c -o terminal.o
 gcc -ffreestanding -m32 -Wall -Wno-trigraphs -c vga.c -o vga.o
 nasm -f elf32 multiboot.asm -o multiboot.o
-ld -melf_i386 -e kmain -Tdata 0x0 -Ttext 0x1000 fdc.o fs.o io.o kernel.o keyboard.o mem.o mouse.o ps2.o serial.o string.o terminal.o vga.o multiboot.o -o kernel.elf
+ld -melf_i386 -e kmain -Tdata 0x0 -Ttext 0x1000 fdc.o fs.o io.o kernel.o keyboard.o mem.o mouse.o parallel.o ps2.o serial.o string.o terminal.o vga.o multiboot.o -o kernel.elf
 make: Leaving directory '/home/lennonmclean/github/my-os'
  
