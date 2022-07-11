@@ -1,0 +1,1 @@
+void parallelSend(unsigned char byte);
