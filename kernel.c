@@ -3,6 +3,7 @@
 #include "string.h"
 #include "vga.h"
 #include "fdc.h"
+#include "parallel.h"
 
 void kmain() {
       char* input = malloc(0x100);
@@ -17,9 +18,10 @@ void kmain() {
                   print("help: Print this message.\r\n");
                   print("clear: Clear the screen.\r\n");
                   print("cttyVGA: Change the TTY to VGA.\r\n");
-                  print("cttySERIAL: Change the TTY to serial.\r\n");
+                  print("cttySERIAL: Change the TTY to the serial port.\r\n");
                   print("halt: Stop the OS.\r\n");
                   print("floppy: Try reading from the floppy drive.\r\n");
+                  print("parallel: Send an A character to the parallel port.\r\n");
             }
             else if (strcmp(input, "clear")) {
                   clear(' ', 0x07);
@@ -37,6 +39,9 @@ void kmain() {
                   char* buffer = malloc(512);
                   read_blocks(1, 0, 0, buffer);
                   print(buffer);
+            }
+            else if (strcmp(input, "parallel")) {
+                  parallelSend('A');
             }
             else {
                   print("I'm not sure what \"");
