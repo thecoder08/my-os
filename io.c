@@ -1,3 +1,5 @@
+#include "io.h"
+
 unsigned char in(unsigned short port) {
     unsigned char result;
     __asm__("in %%dx, %%al" : "=a" (result) : "d" (port));

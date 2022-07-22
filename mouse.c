@@ -1,4 +1,5 @@
 #include "ps2.h"
+#include "mouse.h"
 
 void mouseScan(unsigned char* flags, char* x, char* y) {
     // enable data reporting

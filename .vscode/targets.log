@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sun Jul 10 21:39:09 2022
+# Make data base, printed on Thu Jul 21 21:58:49 2022
 
 # Variables
 
@@ -25,7 +25,7 @@ SSH_AGENT_LAUNCHER = gnome-keyring
 # environment
 GJS_DEBUG_OUTPUT = stderr
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-af712999-a01b-428b-a21e-84f763bb5d8f.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-58701fd0-796f-4399-85ec-18f67d356078.sock
 # environment
 MANDATORY_PATH = /usr/share/gconf/pop.mandatory.path
 # environment
@@ -76,6 +76,8 @@ CURDIR := /home/lennonmclean/github/my-os
 VSCODE_PIPE_LOGGING = true
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+# environment
+LESSOPEN = | /usr/bin/lesspipe %s
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
@@ -97,13 +99,13 @@ MAKEFILE_LIST := Makefile
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 545859
+VSCODE_PID = 16704
 # environment
 XDG_SESSION_TYPE = x11
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # environment
-SESSION_MANAGER = local/lennon:@/tmp/.ICE-unix/2702,unix/lennon:/tmp/.ICE-unix/2702
+SESSION_MANAGER = local/lennon:@/tmp/.ICE-unix/2720,unix/lennon:/tmp/.ICE-unix/2720
 # automatic
 *F = $(notdir $*)
 # environment
@@ -139,11 +141,13 @@ MAKEFILES :=
 # automatic
 ^F = $(notdir $^)
 # environment
-INVOCATION_ID = c4035d05770b43fe9a7092b6fa603aeb
+INVOCATION_ID = 2a5360109df84b0393309631e2613ad9
 # environment
 VSCODE_LOG_NATIVE = false
 # environment
 USERNAME = lennonmclean
+# environment
+LESSCLOSE = /usr/bin/lesspipe %s %s
 # automatic
 ?F = $(notdir $?)
 # environment
@@ -152,6 +156,8 @@ GTK_IM_MODULE = ibus
 ASM_SRC = $(wildcard *.asm)
 # environment
 XDG_CURRENT_DESKTOP = Unity
+# environment
+LS_COLORS = 
 # automatic
 +F = $(notdir $+)
 # environment
@@ -163,13 +169,11 @@ GNUMAKEFLAGS :=
 # environment
 LOGNAME = lennonmclean
 # environment
-LIBGL_ALWAYS_INDIRECT = 1
-# environment
 GIO_LAUNCHED_DESKTOP_FILE = /usr/share/applications/code.desktop
 # makefile
 .DEFAULT_GOAL := run
 # environment
-SYSTEMD_EXEC_PID = 2727
+SYSTEMD_EXEC_PID = 2744
 # environment
 DISPLAY = :0
 # environment
@@ -181,9 +185,9 @@ DEFAULTS_PATH = /usr/share/gconf/pop.default.path
 # default
 MAKE_VERSION := 4.3
 # environment
-MANAGERPID = 2497
+MANAGERPID = 2515
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 545859
+GIO_LAUNCHED_DESKTOP_FILE_PID = 16704
 # environment
 PYTHONPATH = /usr/lib/python2.7 /usr/lib/python3 /usr/lib/python3.10/site-packages:/usr/lib/python2.7 /usr/lib/python3 /usr/lib/python3.10/site-packages:
 # environment
@@ -193,7 +197,7 @@ XDG_RUNTIME_DIR = /run/user/1000
 # environment
 GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
-JOURNAL_STREAM = 8:48827
+JOURNAL_STREAM = 8:52619
 # environment
 XDG_SESSION_CLASS = user
 # environment
@@ -219,7 +223,7 @@ XDG_MENU_PREFIX = gnome-
 # environment
 GDMSESSION = pop
 # variable set hash-table stats:
-# Load=103/1024=10%, Rehash=0, Collisions=4/136=3%
+# Load=105/1024=10%, Rehash=0, Collisions=4/138=3%
 
 # Pattern-specific Variable Values
 
@@ -227,9 +231,9 @@ GDMSESSION = pop
 
 # Directories
 
-# . (device 66310, inode 4834220): 52 files, no impossibilities.
+# . (device 66310, inode 4834220): 54 files, no impossibilities.
 
-# 52 files, no impossibilities in 1 directories.
+# 54 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -281,9 +285,9 @@ Makefile:
 #  Last modified 2022-07-06 22:47:57.598373052
 #  File has been updated.
 #  Successfully updated.
- 
 
 # Not a target:
+ 
 serial.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -411,9 +415,9 @@ grub.cfg:
 # strcache buffers: 1 (0) / strings = 64 / storage = 519 B / avg = 8 B
 # current buf: size = 8162 B / used = 519 B / count = 64 / avg = 8 B
 
-# strcache performance: lookups = 91 / hit rate = 29%
+# strcache performance: lookups = 93 / hit rate = 31%
 # hash-table stats:
-# Load=64/8192=1%, Rehash=0, Collisions=0/91=0%
-# Finished Make data base on Sun Jul 10 21:39:09 2022
+# Load=64/8192=1%, Rehash=0, Collisions=0/93=0%
+# Finished Make data base on Thu Jul 21 21:58:49 2022
 
  

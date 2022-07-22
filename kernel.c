@@ -21,7 +21,7 @@ void kmain() {
                   print("cttySERIAL: Change the TTY to the serial port.\r\n");
                   print("halt: Stop the OS.\r\n");
                   print("floppy: Try reading from the floppy drive.\r\n");
-                  print("parallel: Send an A character to the parallel port.\r\n");
+                  print("graphics: Try changing the graphics mode and drawing to the screen.\r\n");
             }
             else if (strcmp(input, "clear")) {
                   clear(' ', 0x07);
@@ -40,8 +40,9 @@ void kmain() {
                   read_blocks(1, 0, 0, buffer);
                   print(buffer);
             }
-            else if (strcmp(input, "parallel")) {
-                  parallelSend('A');
+            else if (strcmp(input, "graphics")) {
+                  setVideoMode(1);
+                  memset((char*) 0x000a0000, 4, 50);
             }
             else {
                   print("I'm not sure what \"");

@@ -1,4 +1,5 @@
 #include "io.h"
+#include "parallel.h"
 
 void parallelSend(unsigned char byte) {
     out(0x378, byte);

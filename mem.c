@@ -1,5 +1,6 @@
-// the heap is just a pointer to some memory. Malloc increases it and returns the new result.
+#include "mem.h"
 
+// the heap is just a pointer to some memory. Malloc increases it and returns the new result.
 char* heap = (char*) 0x00010000;
 
 char* malloc(int bytes) {

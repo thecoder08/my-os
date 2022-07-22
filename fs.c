@@ -1,12 +1,7 @@
 #include "fdc.h"
 #include "string.h"
 #include "mem.h"
-
-struct FileEntry {
-    char filename[24];
-    int lba;
-    int size;
-};
+#include "fs.h"
 
 struct FileEntry* get_file(int drive, char* filename2) {
     // allocate memory for file table

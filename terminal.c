@@ -1,6 +1,7 @@
 #include "keyboard.h"
 #include "vga.h"
 #include "serial.h"
+#include "terminal.h"
 
 int tty = 1;
 

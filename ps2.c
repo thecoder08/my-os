@@ -1,4 +1,5 @@
 #include "io.h"
+#include "ps2.h"
 
 unsigned char read_ps2_1() {
     while(1) {

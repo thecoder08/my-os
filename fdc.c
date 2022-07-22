@@ -1,7 +1,7 @@
 #include "io.h"
 #include "serial.h"
 #include "string.h"
-#define SECTORS_PER_TRACK 18
+#include "fdc.h"
 
 void lba_to_chs(int lba, int *head, int *track, int *sector) {
     (*head) = (lba % (SECTORS_PER_TRACK * 2)) / SECTORS_PER_TRACK;
