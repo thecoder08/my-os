@@ -1,6 +1,6 @@
 C_SRC = $(wildcard *.c)
 ASM_SRC = $(wildcard *.asm)
-OBJ = $(C_SRC:.c=.o) $(ASM_SRC:.asm=.o)
+OBJ = $(ASM_SRC:.asm=.o) $(C_SRC:.c=.o)
 
 run: kernel.elf
 	qemu-system-i386 -kernel $^
@@ -20,7 +20,7 @@ myos.img: kernel.elf grub.cfg myos.sfdisk
 	rmdir build
 
 kernel.elf: ${OBJ}
-	ld -melf_i386 -e kmain -Tdata 0x0 -Ttext 0x1000 $^ -o $@
+	ld -melf_i386 -e kmain -Ttext 0x0 $^ -o $@
 
 %.o: %.asm
 	nasm -f elf32 $^ -o $@
