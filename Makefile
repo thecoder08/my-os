@@ -20,13 +20,13 @@ myos.img: kernel.elf grub.cfg myos.sfdisk
 	rmdir build
 
 kernel.elf: ${OBJ}
-	ld -melf_i386 -e kmain -Ttext 0x0 $^ -o $@
+	ld $^ -melf_i386 -e kmain -Ttext 0x0 -o $@
 
 %.o: %.asm
-	nasm -f elf32 $^ -o $@
+	nasm -f elf32 $^
 
 %.o: %.c
-	gcc -ffreestanding -m32 -Wall -Wno-trigraphs -c $^ -o $@
+	gcc -ffreestanding -m32 -Wall -c $^
 
 clean:
 	rm -rf *.o *.elf *.img build
