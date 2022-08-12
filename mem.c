@@ -8,6 +8,7 @@ char* malloc(int bytes) {
     heap += bytes;
     return result;
 }
+
 void memcpy(char* source, char* dest, int length) {
     for (int i = 0; i < length; i++) {
         dest[i] = source[i];
