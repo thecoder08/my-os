@@ -29,4 +29,4 @@ kernel.elf: ${OBJ}
 	gcc -ffreestanding -m32 -Wall -Wno-trigraphs -c $^ -o $@
 
 clean:
-	rm -f *.o *.elf *.img build
+	rm -rf *.o *.elf *.img build

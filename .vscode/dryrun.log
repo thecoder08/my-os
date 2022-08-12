@@ -1,4 +1,4 @@
-make kernel.elf --dry-run --always-make --keep-going --print-directory
+make --dry-run --always-make --keep-going --print-directory
 make: Entering directory '/home/lennonmclean/github/my-os'
 nasm -f elf32 multiboot.asm -o multiboot.o
 gcc -ffreestanding -m32 -Wall -Wno-trigraphs -c fdc.c -o fdc.o
@@ -16,5 +16,6 @@ gcc -ffreestanding -m32 -Wall -Wno-trigraphs -c string.c -o string.o
 gcc -ffreestanding -m32 -Wall -Wno-trigraphs -c terminal.c -o terminal.o
 gcc -ffreestanding -m32 -Wall -Wno-trigraphs -c vga.c -o vga.o
 ld -melf_i386 -e kmain -Ttext 0x0 multiboot.o fdc.o fs.o io.o kernel.o keyboard.o mem.o mouse.o parallel.o ps2.o serial.o serialmonitor.o string.o terminal.o vga.o -o kernel.elf
+qemu-system-i386 -kernel kernel.elf
 make: Leaving directory '/home/lennonmclean/github/my-os'
  

@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Tue Aug  2 12:59:29 2022
+# Make data base, printed on Fri Aug 12 11:34:16 2022
 
 # Variables
 
@@ -19,15 +19,11 @@ GDK_BACKEND = x11
 # environment
 LC_ALL = C
 # environment
-NO_AT_BRIDGE = 1
-# environment
 GNOME_SHELL_SESSION_MODE = pop
 # environment
 SSH_AGENT_LAUNCHER = gnome-keyring
 # environment
-GJS_DEBUG_OUTPUT = stderr
-# environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-ea20212e-2331-4b05-95b7-7b2417e52f4f.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-c29c1410-6c52-4792-971c-17968fdae5cd.sock
 # environment
 MANDATORY_PATH = /usr/share/gconf/pop.mandatory.path
 # environment
@@ -53,7 +49,7 @@ PWD = /home/lennonmclean/github/my-os
 # environment
 XDG_DATA_DIRS = /usr/share/pop:/usr/share/gnome:/home/lennonmclean/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share/:/usr/share/
 # environment
-OLDPWD = /home/lennonmclean/github/my-os/.github
+OLDPWD = /home/lennonmclean/github
 # automatic
 ^D = $(patsubst %/,%,$(dir $^))
 # environment
@@ -71,7 +67,7 @@ XAUTHORITY = /run/user/1000/gdm/Xauthority
 # default
 .INCLUDE_DIRS = /usr/local/include /usr/include /usr/include
 # environment
-GNOME_TERMINAL_SERVICE = :1.155
+GNOME_TERMINAL_SERVICE = :1.1363
 # makefile
 MAKEFLAGS = pqrR
 # makefile (from 'Makefile', line 1)
@@ -105,13 +101,13 @@ MAKEFILE_LIST := Makefile
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 6913
+VSCODE_PID = 240314
 # environment
 XDG_SESSION_TYPE = x11
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # environment
-SESSION_MANAGER = local/lennon:@/tmp/.ICE-unix/2739,unix/lennon:/tmp/.ICE-unix/2739
+SESSION_MANAGER = local/lennon:@/tmp/.ICE-unix/2732,unix/lennon:/tmp/.ICE-unix/2732
 # automatic
 *F = $(notdir $*)
 # environment
@@ -133,11 +129,9 @@ MAKECMDGOALS := all
 # environment
 XMODIFIERS = @im=ibus
 # environment
-GJS_DEBUG_TOPICS = JS ERROR;JS LOG
-# environment
 SHLVL = 1
 # environment
-GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/8621a3ff_8537_43d7_8565_5a53e1e1eee9
+GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/d9184711_4db2_47a1_b069_745a52b01b8d
 # environment
 MAKELEVEL := 0
 # default
@@ -148,8 +142,6 @@ PATH = /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/
 MAKEFILES := 
 # automatic
 ^F = $(notdir $^)
-# environment
-INVOCATION_ID = b5fc7840877d4d0baa32a8c5ebc743f2
 # environment
 VSCODE_LOG_NATIVE = false
 # environment
@@ -176,12 +168,10 @@ ORIGINAL_XDG_CURRENT_DESKTOP = pop:GNOME
 GNUMAKEFLAGS := 
 # environment
 LOGNAME = lennonmclean
-# environment
-GIO_LAUNCHED_DESKTOP_FILE = /usr/share/applications/code.desktop
 # makefile
 .DEFAULT_GOAL := run
 # environment
-SYSTEMD_EXEC_PID = 2762
+SYSTEMD_EXEC_PID = 2757
 # environment
 DISPLAY = :0
 # environment
@@ -193,10 +183,6 @@ DEFAULTS_PATH = /usr/share/gconf/pop.default.path
 # default
 MAKE_VERSION := 4.3
 # environment
-MANAGERPID = 2501
-# environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 6913
-# environment
 PYTHONPATH = /usr/lib/python2.7 /usr/lib/python3 /usr/lib/python3.10/site-packages:
 # environment
 _ = /usr/bin/code
@@ -206,8 +192,6 @@ XDG_RUNTIME_DIR = /run/user/1000
 GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
 COLORTERM = truecolor
-# environment
-JOURNAL_STREAM = 8:48534
 # environment
 XDG_SESSION_CLASS = user
 # environment
@@ -241,7 +225,7 @@ XDG_MENU_PREFIX = gnome-
 # environment
 GDMSESSION = pop
 # variable set hash-table stats:
-# Load=114/1024=11%, Rehash=0, Collisions=11/147=7%
+# Load=106/1024=10%, Rehash=0, Collisions=11/139=8%
 
 # Pattern-specific Variable Values
 
@@ -249,9 +233,9 @@ GDMSESSION = pop
 
 # Directories
 
-# . (device 66310, inode 4834220): 56 files, no impossibilities.
+# . (device 66306, inode 191678): 40 files, no impossibilities.
 
-# 56 files, no impossibilities in 1 directories.
+# 40 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -279,7 +263,6 @@ parallel.o:
 #  File has not been updated.
 
 # Not a target:
- 
 serialmonitor.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -296,6 +279,7 @@ kernel.elf: multiboot.o fdc.o fs.o io.o kernel.o keyboard.o mem.o mouse.o parall
 mem.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
+ 
 #  File has not been updated.
 
 # Not a target:
@@ -307,7 +291,7 @@ kernel.o:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-02 12:58:34.322327202
+#  Last modified 2022-08-12 11:34:05.0667725
 #  File has been updated.
 #  Successfully updated.
 
@@ -328,7 +312,7 @@ clean:
 #  Modification time never checked.
 #  File has not been updated.
 #  recipe to execute (from 'Makefile', line 32):
-	rm -f *.o *.elf *.img build
+	rm -rf *.o *.elf *.img build
 
 # Not a target:
 fs.o:
@@ -439,9 +423,9 @@ grub.cfg:
 # strcache buffers: 1 (0) / strings = 67 / storage = 567 B / avg = 8 B
 # current buf: size = 8162 B / used = 567 B / count = 67 / avg = 8 B
 
-# strcache performance: lookups = 96 / hit rate = 30%
+# strcache performance: lookups = 80 / hit rate = 16%
 # hash-table stats:
-# Load=67/8192=1%, Rehash=0, Collisions=0/96=0%
-# Finished Make data base on Tue Aug  2 12:59:29 2022
+# Load=67/8192=1%, Rehash=0, Collisions=0/80=0%
+# Finished Make data base on Fri Aug 12 11:34:16 2022
 
  
