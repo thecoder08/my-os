@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Fri Aug 12 11:34:16 2022
+# Make data base, printed on Fri Aug 12 14:52:36 2022
 
 # Variables
 
@@ -23,11 +23,11 @@ GNOME_SHELL_SESSION_MODE = pop
 # environment
 SSH_AGENT_LAUNCHER = gnome-keyring
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-c29c1410-6c52-4792-971c-17968fdae5cd.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-67f900d2-1be3-4218-8488-9a6c70fc1418.sock
 # environment
 MANDATORY_PATH = /usr/share/gconf/pop.mandatory.path
 # environment
-VSCODE_CWD = /home/lennonmclean/github/my-os
+VSCODE_CWD = /home/lennonmclean
 # environment
 WINDOWPATH = 2
 # environment
@@ -48,8 +48,6 @@ PWD = /home/lennonmclean/github/my-os
 %D = $(patsubst %/,%,$(dir $%))
 # environment
 XDG_DATA_DIRS = /usr/share/pop:/usr/share/gnome:/home/lennonmclean/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share/:/usr/share/
-# environment
-OLDPWD = /home/lennonmclean/github
 # automatic
 ^D = $(patsubst %/,%,$(dir $^))
 # environment
@@ -67,7 +65,7 @@ XAUTHORITY = /run/user/1000/gdm/Xauthority
 # default
 .INCLUDE_DIRS = /usr/local/include /usr/include /usr/include
 # environment
-GNOME_TERMINAL_SERVICE = :1.1363
+GNOME_TERMINAL_SERVICE = :1.1513
 # makefile
 MAKEFLAGS = pqrR
 # makefile (from 'Makefile', line 1)
@@ -101,7 +99,7 @@ MAKEFILE_LIST := Makefile
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 240314
+VSCODE_PID = 302313
 # environment
 XDG_SESSION_TYPE = x11
 # automatic
@@ -131,7 +129,7 @@ XMODIFIERS = @im=ibus
 # environment
 SHLVL = 1
 # environment
-GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/d9184711_4db2_47a1_b069_745a52b01b8d
+GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/a2e4a8e1_989a_4edd_804d_d588b7af93b6
 # environment
 MAKELEVEL := 0
 # default
@@ -225,7 +223,7 @@ XDG_MENU_PREFIX = gnome-
 # environment
 GDMSESSION = pop
 # variable set hash-table stats:
-# Load=106/1024=10%, Rehash=0, Collisions=11/139=8%
+# Load=105/1024=10%, Rehash=0, Collisions=11/138=8%
 
 # Pattern-specific Variable Values
 
@@ -233,19 +231,19 @@ GDMSESSION = pop
 
 # Directories
 
-# . (device 66306, inode 191678): 40 files, no impossibilities.
+# . (device 66306, inode 191678): 56 files, no impossibilities.
 
-# 40 files, no impossibilities in 1 directories.
+# 56 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
 %.o: %.asm
 #  recipe to execute (from 'Makefile', line 26):
-	nasm -f elf32 $^ -o $@
+	nasm -f elf32 $^
 
 %.o: %.c
 #  recipe to execute (from 'Makefile', line 29):
-	gcc -ffreestanding -m32 -Wall -Wno-trigraphs -c $^ -o $@
+	gcc -ffreestanding -m32 -Wall -c $^
 
 # 2 implicit rules, 0 (0.0%) terminal.
 # Files
@@ -273,13 +271,12 @@ kernel.elf: multiboot.o fdc.o fs.o io.o kernel.o keyboard.o mem.o mouse.o parall
 #  Modification time never checked.
 #  File has not been updated.
 #  recipe to execute (from 'Makefile', line 23):
-	ld -melf_i386 -e kmain -Ttext 0x0 $^ -o $@
+	ld $^ -melf_i386 -e kmain -Ttext 0x0 -o $@
 
 # Not a target:
 mem.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
- 
 #  File has not been updated.
 
 # Not a target:
@@ -291,7 +288,7 @@ kernel.o:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-12 11:34:05.0667725
+#  Last modified 2022-08-12 14:50:28.504300664
 #  File has been updated.
 #  Successfully updated.
 
@@ -384,6 +381,7 @@ myos.img: kernel.elf grub.cfg myos.sfdisk
 	sudo cp kernel.elf build
 	sudo grub-install --boot-directory=build --target=i386-pc /dev/loop8
 	sudo cp grub.cfg build/grub
+ 
 	sudo umount build
 	sudo losetup -d /dev/loop8
 	rmdir build
@@ -423,9 +421,9 @@ grub.cfg:
 # strcache buffers: 1 (0) / strings = 67 / storage = 567 B / avg = 8 B
 # current buf: size = 8162 B / used = 567 B / count = 67 / avg = 8 B
 
-# strcache performance: lookups = 80 / hit rate = 16%
+# strcache performance: lookups = 96 / hit rate = 30%
 # hash-table stats:
-# Load=67/8192=1%, Rehash=0, Collisions=0/80=0%
-# Finished Make data base on Fri Aug 12 11:34:16 2022
+# Load=67/8192=1%, Rehash=0, Collisions=0/96=0%
+# Finished Make data base on Fri Aug 12 14:52:36 2022
 
  
