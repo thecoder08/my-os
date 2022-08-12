@@ -6,6 +6,6 @@ unsigned char in(unsigned short port) {
     return result;
 }
 
-void out(unsigned short port, unsigned char data) {
+void out(unsigned short port, unsigned char data) {h
     __asm__("out %%al, %%dx" : : "a" (data), "d" (port));
 }
