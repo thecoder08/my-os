@@ -1,5 +1,20 @@
-make kernel.elf --dry-run --keep-going --print-directory
+make kernel.elf --dry-run --always-make --keep-going --print-directory
 make: Entering directory '/home/lennonmclean/github/my-os'
-make: 'kernel.elf' is up to date.
+nasm -f elf32 multiboot.asm
+gcc -ffreestanding -m32 -Wall -c fdc.c
+gcc -ffreestanding -m32 -Wall -c fs.c
+gcc -ffreestanding -m32 -Wall -c io.c
+gcc -ffreestanding -m32 -Wall -c kernel.c
+gcc -ffreestanding -m32 -Wall -c keyboard.c
+gcc -ffreestanding -m32 -Wall -c mem.c
+gcc -ffreestanding -m32 -Wall -c mouse.c
+gcc -ffreestanding -m32 -Wall -c parallel.c
+gcc -ffreestanding -m32 -Wall -c ps2.c
+gcc -ffreestanding -m32 -Wall -c serial.c
+gcc -ffreestanding -m32 -Wall -c serialmonitor.c
+gcc -ffreestanding -m32 -Wall -c string.c
+gcc -ffreestanding -m32 -Wall -c terminal.c
+gcc -ffreestanding -m32 -Wall -c vga.c
+ld multiboot.o fdc.o fs.o io.o kernel.o keyboard.o mem.o mouse.o parallel.o ps2.o serial.o serialmonitor.o string.o terminal.o vga.o -melf_i386 -e kmain -Ttext 0x0 -o kernel.elf
 make: Leaving directory '/home/lennonmclean/github/my-os'
  
