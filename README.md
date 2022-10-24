@@ -4,7 +4,7 @@ This is a simple 32-bit OS that can run some basic commands. It is written in C 
 It supports:
 - [x] Text mode VGA driver
 - [ ] Graphics mode VGA driver
-- [] PS/2 Keyboard and mouse drivers
+- [ ] PS/2 Keyboard and mouse drivers
 - [x] Serial port driver
 - [ ] Parallel port driver
 - [x] Terminal driver, with multiplexing between Serial and VGA/Keyboard
