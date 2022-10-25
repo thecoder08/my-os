@@ -1,1 +1,1 @@
-void mouseScan(unsigned char* flags, char* x, char* y);
+void mouseScan(unsigned char* flags, unsigned char* x, unsigned char* y);

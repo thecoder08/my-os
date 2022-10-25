@@ -1,11 +1,14 @@
+#include "mouse.h"
 #include "terminal.h"
 #include "mem.h"
 #include "string.h"
 #include "vga.h"
-#include "fdc.h"
 #include "parallel.h"
+#include "interrupts.h"
 
 void kmain() {
+      //initializeIdt();
+      int x = 10 / 0;
       char* input = malloc(0x100);
       enableCursor(14, 15);
       clear(' ', 0x07);
@@ -20,7 +23,6 @@ void kmain() {
                   print("cttyVGA: Change the TTY to VGA.\r\n");
                   print("cttySERIAL: Change the TTY to the serial port.\r\n");
                   print("halt: Stop the OS.\r\n");
-                  print("floppy: Try reading from the floppy drive.\r\n");
                   print("graphics: Try changing the graphics mode and drawing to the screen.\r\n");
             }
             else if (strcmp(input, "clear")) {
@@ -35,14 +37,26 @@ void kmain() {
             else if (strcmp(input, "halt")) {
                   while(1);
             }
-            else if (strcmp(input, "floppy")) {
-                  char* buffer = malloc(512);
-                  read_blocks(1, 0, 0, buffer);
-                  print(buffer);
-            }
             else if (strcmp(input, "graphics")) {
                   setVideoMode(1);
                   memset((char*) 0x000a0000, 4, 50);
+            }
+            else if (strcmp(input, "mouse")) {
+                  while(1) {
+                        unsigned char flags;
+                        unsigned char x;
+                        unsigned char y;
+                        mouseScan(&flags, &x, &y);
+                        if (flags) {
+                              print("Flags: ");
+                              print(itoa(flags, 2));
+                              print(" x: ");
+                              print(itoa(x, 10));
+                              print(" y: ");
+                              print(itoa(y, 10));
+                              print("\r\n");
+                        }
+                  }
             }
             else {
                   print("I'm not sure what \"");

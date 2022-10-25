@@ -7,15 +7,14 @@ It supports:
 - [ ] PS/2 Keyboard and mouse drivers
 - [x] Serial port driver
 - [ ] Parallel port driver
+- [ ] ATA Hard disk support
 - [x] Terminal driver, with multiplexing between Serial and VGA/Keyboard
 - [x] A simple shell, with support for basic commands
 - [x] Basic libc with utility functions (strlen, strcmp, strcpy, strcat, reverse, itoa, memcpy, memset)
 - [x] Parallel port driver
 - [ ] Dynamic memory allocation (half done, currently malloc just returns an increasing pointer and cannot be free'd)
-- [ ] Floppy disk driver (In progress)
 - [ ] Filesystem (Maybe FAT) (will be worked on when FDC driver is done)
 - [ ] Graphical Shell with terminal emulator, calculator, and text editor
-- [ ] IDE Hard disk support
 
 ## Running the OS
 Use

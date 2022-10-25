@@ -6,5 +6,8 @@
             "binaryPath": "/usr/bin/qemu-system-i386",
             "binaryArgs": ["-kernel", "kernel.elf"]
         }
-    ]
+    ],
+    "files.associations": {
+        "parallel.h": "c"
+    }
 }

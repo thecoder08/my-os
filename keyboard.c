@@ -11,6 +11,9 @@ void keyboardScan(char *buffer) {
     int i = 0;
     while (1) {
     unsigned char inbyte = read_ps2_1();
+    if (inbyte == 0) {
+        continue;
+    }
     if (inbyte > 0x80)
     {
         if ((inbyte == 0xaa) || (inbyte == 0xb6))
