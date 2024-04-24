@@ -14,6 +14,7 @@ It supports:
 - [x] Parallel port driver
 - [ ] Dynamic memory allocation (half done, currently malloc just returns an increasing pointer and cannot be free'd)
 - [ ] Filesystem (Maybe FAT) (will be worked on when FDC driver is done)
+- [ ] Partition table (needs to be written once we have ATA driver)
 - [ ] Graphical Shell with terminal emulator, calculator, and text editor
 
 ## Running the OS
