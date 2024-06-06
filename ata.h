@@ -1,2 +1,10 @@
-void ata_write(int controller, int drive, int lba, int size, unsigned char* buffer);
-void ata_read(int controller, int drive, int lba, int size, unsigned char* buffer);
+typedef struct {
+    unsigned char primaryMaster;
+    unsigned char primarySlave;
+    unsigned char secondaryMaster;
+    unsigned char secondarySlave;
+} Drives;
+
+Drives detect_drives();
+int ata_write(unsigned char controller, unsigned char driveNumber, unsigned char* lba, unsigned short sectors, void* buffer);
+int ata_read(unsigned char controller, unsigned char driveNumber, unsigned char* lba, unsigned short sectors, void* buffer);

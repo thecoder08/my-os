@@ -5,14 +5,11 @@ typedef struct {
     unsigned char access;
     unsigned char flagsLimitHigh;
     unsigned char baseHigh;
-} GdtEntry;
+} __attribute__((packed)) GdtEntry;
 
 typedef struct {
     unsigned short size;
     GdtEntry* gdtAddress;
-} GdtDescriptor;
+} __attribute__((packed)) GdtDescriptor;
 
 void initializeGdt();
-
-#define low_16(address) (unsigned short)((address) & 0xFFFF)
-#define high_16(address) (unsigned short)(((address) >> 16) & 0xFFFF)

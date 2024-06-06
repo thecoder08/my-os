@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sun Oct 23 21:23:46 2022
+# Make data base, printed on Sun Nov  5 06:57:34 2023
 
 # Variables
 
@@ -23,15 +23,23 @@ GNOME_SHELL_SESSION_MODE = pop
 # environment
 SSH_AGENT_LAUNCHER = gnome-keyring
 # environment
+FNM_DIR = /home/lennonmclean/.local/share/fnm
+# environment
 GJS_DEBUG_OUTPUT = stderr
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-846a1c24-0ab6-4292-93c8-18c969338a8a.sock
-# environment
 MANDATORY_PATH = /usr/share/gconf/pop.mandatory.path
+# environment
+LC_NAME = en_US.UTF-8
+# environment
+LC_NUMERIC = en_US.UTF-8
+# environment
+VSCODE_CRASH_REPORTER_PROCESS_TYPE = extensionHost
 # environment
 VSCODE_CWD = /home/lennonmclean
 # environment
 WINDOWPATH = 2
+# environment
+LC_ADDRESS = en_US.UTF-8
 # environment
 LIBVIRT_DEFAULT_URI = qemu:///system
 # default
@@ -52,12 +60,12 @@ PWD = /home/lennonmclean/github/my-os
 XDG_DATA_DIRS = /usr/share/pop:/usr/share/gnome:/home/lennonmclean/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share/:/usr/share/
 # automatic
 ^D = $(patsubst %/,%,$(dir $^))
-# environment
-VSCODE_LOG_STACK = false
 # automatic
 %F = $(notdir $%)
 # environment
-VSCODE_CODE_CACHE_PATH = /home/lennonmclean/.config/Code/CachedData/c3511e6c69bb39013c4a4b7b9566ec1ca73fc4d5
+VSCODE_CODE_CACHE_PATH = /home/lennonmclean/.config/Code/CachedData/d037ac076cee195194f93ce6fe2bdfe2969cc82d
+# environment
+FNM_VERSION_FILE_STRATEGY = local
 # environment
 LANG = C
 # environment
@@ -66,20 +74,24 @@ XAUTHORITY = /run/user/1000/gdm/Xauthority
 .LOADED := 
 # default
 .INCLUDE_DIRS = /usr/local/include /usr/include /usr/include
+# environment
+FNM_NODE_DIST_MIRROR = https://nodejs.org/dist
 # makefile
 MAKEFLAGS = pqrR
 # makefile (from 'Makefile', line 1)
 C_SRC = $(wildcard *.c)
+# environment
+FNM_LOGLEVEL = info
 # makefile
 CURDIR := /home/lennonmclean/github/my-os
-# environment
-VSCODE_PIPE_LOGGING = true
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # environment
 LESSOPEN = | /usr/bin/lesspipe %s
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
+# environment
+FNM_ARCH = x64
 # environment
 MFLAGS = -pqrR
 # environment
@@ -97,15 +109,13 @@ MAKEFILE_LIST := Makefile
 # automatic
 @F = $(notdir $@)
 # environment
-VSCODE_VERBOSE_LOGGING = true
-# environment
-VSCODE_PID = 9505
+VSCODE_PID = 12650
 # environment
 XDG_SESSION_TYPE = x11
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # environment
-SESSION_MANAGER = local/lennon:@/tmp/.ICE-unix/2844,unix/lennon:/tmp/.ICE-unix/2844
+SESSION_MANAGER = local/lennon:@/tmp/.ICE-unix/1903,unix/lennon:/tmp/.ICE-unix/1903
 # automatic
 *F = $(notdir $*)
 # environment
@@ -115,7 +125,7 @@ DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
 # automatic
 <D = $(patsubst %/,%,$(dir $<))
 # environment
-VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
+VSCODE_NLS_CONFIG = {"locale":"en-us","osLocale":"en-us","availableLanguages":{},"_languagePackSupport":true}
 # default
 MAKE_HOST := x86_64-pc-linux-gnu
 # environment
@@ -137,17 +147,23 @@ MAKELEVEL := 0
 # default
 MAKE = $(MAKE_COMMAND)
 # environment
-PATH = /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/lennonmclean/.dotnet/tools
+PATH = /home/lennonmclean/.local/bin:/run/user/1000/fnm_multishells/12762_1699185444562/bin:/home/lennonmclean/.local/share/fnm:/home/lennonmclean/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/lennonmclean/.local/bin:/home/lennonmclean/.dotnet/tools:/home/lennonmclean/.local/bin
 # default
 MAKEFILES := 
+# environment
+LC_MONETARY = en_US.UTF-8
 # automatic
 ^F = $(notdir $^)
 # environment
-INVOCATION_ID = c934a4d06cf0494e96bb3ef9c8dc9920
+LC_TIME = en_US.UTF-8
 # environment
-VSCODE_LOG_NATIVE = false
+INVOCATION_ID = b22053376e3b4f9598e69ceaf0721f99
+# environment
+FNM_MULTISHELL_PATH = /run/user/1000/fnm_multishells/12762_1699185444562
 # environment
 USERNAME = lennonmclean
+# environment
+LC_TELEPHONE = en_US.UTF-8
 # environment
 LESSCLOSE = /usr/bin/lesspipe %s %s
 # automatic
@@ -158,8 +174,6 @@ GTK_IM_MODULE = ibus
 ASM_SRC = $(wildcard *.asm)
 # environment
 XDG_CURRENT_DESKTOP = Unity
-# environment
-LS_COLORS = 
 # automatic
 +F = $(notdir $+)
 # environment
@@ -175,31 +189,33 @@ GIO_LAUNCHED_DESKTOP_FILE = /usr/share/applications/code.desktop
 # makefile
 .DEFAULT_GOAL := run
 # environment
-SYSTEMD_EXEC_PID = 2868
+SYSTEMD_EXEC_PID = 1922
 # environment
-DISPLAY = :0
+DISPLAY = :1
 # environment
 USER = lennonmclean
 # environment
-GTK_MODULES = gail:atk-bridge:appmenu-gtk-module
+GTK_MODULES = gail:atk-bridge
 # environment
 DEFAULTS_PATH = /usr/share/gconf/pop.default.path
 # default
 MAKE_VERSION := 4.3
 # environment
-MANAGERPID = 2634
+MANAGERPID = 1656
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 9505
+LC_MEASUREMENT = en_US.UTF-8
 # environment
-PYTHONPATH = /usr/lib/python2.7 /usr/lib/python3 /usr/lib/python3.10 /usr/lib/python3.11/site-packages:/usr/lib/python2.7 /usr/lib/python3 /usr/lib/python3.10 /usr/lib/python3.11/site-packages:
+GIO_LAUNCHED_DESKTOP_FILE_PID = 12650
 # environment
 _ = /usr/share/code/code
+# environment
+LC_PAPER = en_US.UTF-8
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
 GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
-JOURNAL_STREAM = 8:54533
+JOURNAL_STREAM = 8:35404
 # environment
 XDG_SESSION_CLASS = user
 # environment
@@ -211,7 +227,9 @@ QT_IM_MODULE = ibus
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-VSCODE_IPC_HOOK = /run/user/1000/vscode-0ecb0602-1.67.2-main.sock
+VSCODE_IPC_HOOK = /run/user/1000/vscode-0ecb0602-1.84-main.sock
+# environment
+PAPERSIZE = letter
 # default
 .RECIPEPREFIX := 
 # automatic
@@ -223,11 +241,11 @@ SUFFIXES :=
 # environment
 XDG_MENU_PREFIX = gnome-
 # environment
-DOTNET_ROOT = /usr/lib/dotnet/dotnet6-6.0.110
-# environment
 GDMSESSION = pop
+# environment
+LC_IDENTIFICATION = en_US.UTF-8
 # variable set hash-table stats:
-# Load=107/1024=10%, Rehash=0, Collisions=4/140=3%
+# Load=116/1024=11%, Rehash=0, Collisions=4/149=3%
 
 # Pattern-specific Variable Values
 
@@ -235,25 +253,31 @@ GDMSESSION = pop
 
 # Directories
 
-# . (device 66306, inode 191678): 56 files, no impossibilities.
+# . (device 66308, inode 191678): 63 files, no impossibilities.
 
-# 56 files, no impossibilities in 1 directories.
+# 63 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
 %.o: %.asm
 #  recipe to execute (from 'Makefile', line 26):
-	nasm -f elf32 $^
+	nasm -g -f elf32 $^
 
 %.o: %.c
 #  recipe to execute (from 'Makefile', line 29):
-	gcc -ffreestanding -m32 -Wall -c $^
+	gcc -ffreestanding -g -m32 -Wall -c $^
 
 # 2 implicit rules, 0 (0.0%) terminal.
 # Files
 
 # Not a target:
 vga.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+interrupts.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -270,9 +294,10 @@ serialmonitor.o:
 #  Modification time never checked.
 #  File has not been updated.
 
-kernel.elf: multiboot.o fdc.o fs.o io.o kernel.o keyboard.o mem.o mouse.o parallel.o ps2.o serial.o serialmonitor.o string.o terminal.o vga.o
+kernel.elf: multiboot.o new_gdt.o ata.o gdt.o interrupts.o io.o kernel.o keyboard.o mem.o mouse.o parallel.o ps2.o serial.o serialmonitor.o string.o terminal.o vga.o
 #  Implicit rule search has not been done.
 #  Modification time never checked.
+ 
 #  File has not been updated.
 #  recipe to execute (from 'Makefile', line 23):
 	ld $^ -melf_i386 -e kmain -Ttext 0x0 -o $@
@@ -292,10 +317,9 @@ kernel.o:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-12 14:50:28.504300664
+#  Last modified 2023-10-27 17:20:42.41773081
 #  File has been updated.
 #  Successfully updated.
- 
 
 # Not a target:
 serial.o:
@@ -304,7 +328,7 @@ serial.o:
 #  File has not been updated.
 
 # Not a target:
-fdc.o:
+ata.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -317,7 +341,7 @@ clean:
 	rm -rf *.o *.elf *.img build
 
 # Not a target:
-fs.o:
+gdt.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -358,7 +382,13 @@ run: kernel.elf
 #  Modification time never checked.
 #  File has not been updated.
 #  recipe to execute (from 'Makefile', line 6):
-	qemu-system-i386 -kernel $^
+	qemu-system-i386 --gdb tcp::1234 -kernel $^
+
+# Not a target:
+new_gdt.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 string.o:
@@ -415,19 +445,19 @@ grub.cfg:
 #  File has not been updated.
 
 # files hash-table stats:
-# Load=25/1024=2%, Rehash=0, Collisions=0/55=0%
+# Load=27/1024=3%, Rehash=0, Collisions=0/59=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 67 / storage = 567 B / avg = 8 B
-# current buf: size = 8162 B / used = 567 B / count = 67 / avg = 8 B
+# strcache buffers: 1 (0) / strings = 74 / storage = 649 B / avg = 8 B
+# current buf: size = 8162 B / used = 649 B / count = 74 / avg = 8 B
 
-# strcache performance: lookups = 96 / hit rate = 30%
+# strcache performance: lookups = 105 / hit rate = 29%
 # hash-table stats:
-# Load=67/8192=1%, Rehash=0, Collisions=0/96=0%
-# Finished Make data base on Sun Oct 23 21:23:46 2022
+# Load=74/8192=1%, Rehash=0, Collisions=0/105=0%
+# Finished Make data base on Sun Nov  5 06:57:34 2023
 
  

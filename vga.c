@@ -1,5 +1,6 @@
 #include "io.h"
 #include "vga.h"
+#include "mem.h"
 
 void setChar(char character, char color, int x, int y) {
     char* cell = (char*) 0x000b8000 + ((y * 80 + x) * 2);
@@ -74,7 +75,15 @@ void writeChar(char character) {
 		currentY++;
 	}
 	if (currentY > 24) {
-		clear(' ', 0x07);
+		for (int row = 0; row < 24; row++) {
+			char* thisRow = (char*) 0x000b8000 + 160*row;
+			char* nextRow = (char*) 0x000b8000 + 160*(row+1);
+			memcpy(nextRow, thisRow, 160);
+		}
+		for (int x = 0; x < 80; x++) {
+			setChar(' ', 0x07, x, 24);
+		}
+		currentY = 24;
 	}
 	setCursor(currentX, currentY);
 }

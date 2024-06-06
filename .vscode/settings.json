@@ -8,6 +8,7 @@
         }
     ],
     "files.associations": {
-        "parallel.h": "c"
+        "parallel.h": "c",
+        "algorithm": "c"
     }
 }

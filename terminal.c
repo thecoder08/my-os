@@ -6,12 +6,12 @@
 int tty = 1;
 
 void scan(char* buffer) {
-    if (tty) {
-        keyboardScan(buffer);
-    }
-    else {
+    //if (tty) {
+    //    keyboardScan(buffer);
+    //}
+    //else {
         serialScan(buffer);
-    }
+    //}
 }
 
 void print(char* string) {
