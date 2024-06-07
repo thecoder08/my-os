@@ -1,7 +1,5 @@
-#include "../terminal.h"
 #include "../string.h"
-
-void exit(int status);
+#include "../terminal.h"
 
 void _start() {
     print("OS Shell v1.0. Type \"help\" for help.\r\n");
@@ -16,11 +14,13 @@ void _start() {
             print("Or use one of the following built-in commands:\r\n");
             print("help: Prints this message\r\n");
             print("exit: Returns to the OS kernel.\r\n");
+            print("int: Tests the system call interrupt\r\n");
         }
         else if (strcmp(input, "exit")) {
-            //exit(0);
-            print("We would exit here but we can't\r\n");
-            while(1);
+            return;
+        }
+        else if (strcmp(input, "int")) {
+            asm("int $0x80");
         }
         else {
             // eventually search for external commmands here

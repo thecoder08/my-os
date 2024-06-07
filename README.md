@@ -4,18 +4,18 @@ This is a simple 32-bit OS that can run some basic commands. It is written in C 
 It supports:
 - [x] Text mode VGA driver
 - [ ] Graphics mode VGA driver
-- [ ] PS/2 Keyboard and mouse drivers
+- [x] PS/2 Keyboard and mouse drivers
 - [x] Serial port driver
-- [ ] Parallel port driver
-- [ ] ATA Hard disk support
-- [x] Terminal driver, with multiplexing between Serial and VGA/Keyboard
-- [x] A simple shell, with support for basic commands
-- [x] Basic libc with utility functions (strlen, strcmp, strcpy, strcat, reverse, itoa, memcpy, memset)
 - [x] Parallel port driver
-- [ ] Dynamic memory allocation (half done, currently malloc just returns an increasing pointer and cannot be free'd)
-- [ ] Filesystem (Maybe FAT) (will be worked on when FDC driver is done)
-- [ ] Partition table (needs to be written once we have ATA driver)
+- [-] ATA Hard disk support (read only)
+- [x] Terminal driver, with multiplexing between Serial and VGA/Keyboard
+- [x] A built-in kernel shell, with support for basic commands
+- [x] Basic libc with utility functions (strlen, strcmp, strcpy, strcat, reverse, itoa, memcpy, memset)
+- [-] Dynamic memory allocation (half done, currently malloc just returns an increasing pointer and cannot be free'd)
+- [-] FAT16 FS support (read-only at the moment)
+- [x] Partition table (needs to be written once we have ATA driver)
 - [ ] Graphical Shell with terminal emulator, calculator, and text editor
+- [x] Loading an external shell program from disk
 
 ## Running the OS
 Use

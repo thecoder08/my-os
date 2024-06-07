@@ -1,1 +1,2 @@
-void initKeyboard(char* dataBuffer, void (*scan)());
+void initKeyboard();
+void keyboardScan(char* dataBuffer);

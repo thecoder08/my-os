@@ -7,10 +7,18 @@ char *mapping_default = "\?\?1234567890-=??qwertyuiop[]??asdfghjkl;'`?\\zxcvbnm,
 char *mapping_shifted = "\?\?!@#$%^&*()_+??QWERTYUIOP{}??ASDFGHJKL:\"~?|ZXCVBNM<>???? ???????????????????????????????";
 int shifted = 0;
 int i = 0;
+int scanning = 0;
 
-void (*scanHandler)();
+void keyboardScan(char* dataBuffer) {
+    buffer = dataBuffer;
+    scanning = 1;
+    while (scanning == 1);
+}
 
 void keyboardHander(unsigned char inbyte) {
+    if (scanning == 0) {
+        return;
+    }
     if (inbyte == 0) {
         return;
     }
@@ -32,7 +40,7 @@ void keyboardHander(unsigned char inbyte) {
             vgaPrint("\r\n");
             buffer[i] = 0;
             i = 0;
-            scanHandler();
+            scanning = 0;
             return;
         }
         else if (inbyte == 0x0e)
@@ -59,8 +67,6 @@ void keyboardHander(unsigned char inbyte) {
     }
 }
 
-void initKeyboard(char* dataBuffer, void (*scan)()) {
-    buffer = dataBuffer;
-    scanHandler = scan;
+void initKeyboard() {
     init_ps2_1(keyboardHander);
 }

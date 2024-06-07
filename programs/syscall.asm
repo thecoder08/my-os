@@ -1,15 +1,13 @@
-global read
-global write
-global exit
 section .text
-read:
-mov rax, 0
-syscall
-ret
-write:
-mov rax, 1
-syscall
-ret
-exit:
-mov rax, 60
-syscall
+extern print
+extern scan
+print:
+    mov ecx, 0
+    mov edx, [esp+4]
+    int 0x80
+    ret
+scan:
+    mov ecx, 1
+    mov edx, [esp+4]
+    int 0x80
+    ret

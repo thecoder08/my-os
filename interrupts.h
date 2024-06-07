@@ -14,6 +14,7 @@ typedef struct {
 struct interrupt_frame;
 
 void initializeIdt();
+void registerIsr(unsigned char entry, void (*isrHandler) (struct interrupt_frame* frame));
 void addIrqHandler(unsigned char irq, void (*irqHandler) (struct interrupt_frame* frame));
 void sendEOI(unsigned char irq);
 

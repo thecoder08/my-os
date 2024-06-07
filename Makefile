@@ -5,7 +5,7 @@ OBJ = $(ASM_SRC:.asm=.o) $(C_SRC:.c=.o)
 run: kernel.elf
 	qemu-system-i386 --gdb tcp::1234 -m 4G -kernel $^
 
-myos.img: kernel.elf grub.cfg myos.sfdisk
+myos.img: kernel.elf grub.cfg myos.sfdisk programs/shell.bin
 	dd if=/dev/zero of=$@ bs=1M count=10
 	cat myos.sfdisk | sfdisk $@
 	sudo losetup -P loop8 $@
