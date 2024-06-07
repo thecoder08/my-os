@@ -135,7 +135,7 @@ int ata_read(unsigned char controller, unsigned char driveNumber, unsigned char*
     for (unsigned short sector = 0; sector < sectors; sector++) {
         int busyTest = 0;
         while (1) {
-            if (busyTest > 20) {
+            if (busyTest > 50) {
                 print("Drive hang, resetting.\r\n");
                 reset(base);
                 return 1;
