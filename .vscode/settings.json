@@ -9,6 +9,8 @@
     ],
     "files.associations": {
         "parallel.h": "c",
-        "algorithm": "c"
+        "algorithm": "c",
+        "terminal.h": "c",
+        "typeinfo": "c"
     }
 }

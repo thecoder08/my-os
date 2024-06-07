@@ -1,6 +1,9 @@
 #include "../string.h"
 #include "../terminal.h"
 
+int runFile(char* filename);
+void listRoot();
+
 void _start() {
     print("OS Shell v1.0. Type \"help\" for help.\r\n");
     char input[0x100];
@@ -12,21 +15,23 @@ void _start() {
             print("It is capable of more the the kernel's shell.\r\n");
             print("Type a command to run an executable file.\r\n");
             print("Or use one of the following built-in commands:\r\n");
-            print("help: Prints this message\r\n");
+            print("help: Prints this message.\r\n");
             print("exit: Returns to the OS kernel.\r\n");
-            print("int: Tests the system call interrupt\r\n");
+            print("list: Lists the contents of the root directory.\r\n");
         }
         else if (strcmp(input, "exit")) {
             return;
         }
-        else if (strcmp(input, "int")) {
-            asm("int $0x80");
+        else if (strcmp(input, "list")) {
+            listRoot();
         }
         else {
-            // eventually search for external commmands here
-            print("\"");
-            print(input);
-            print("\" is not an external or built-in command. Try again.\r\n");
+            int status = runFile(input);
+            if (status == 1) {
+                print("\"");
+                print(input);
+                print("\" is not an external or built-in command. Try again.\r\n");
+            }
         }
     }
 }

@@ -4,6 +4,8 @@
 #include "terminal.h"
 #include "mem.h"
 
+RootDirEntry rootDir[1000];
+
 Bpb readbpb(unsigned char controller, unsigned char driveNumber, unsigned int lba) {
     Bpb bpb;
     unsigned char partLba[6] = {0};
@@ -35,25 +37,23 @@ void listRootDir(unsigned char controller, unsigned char driveNumber, unsigned i
 
 // reads a file from the specified disk, with the specified name and extension, and the specified partition-start lba (given by reading the partition table)
 int readFile(unsigned char controller, unsigned char driveNumber, char* name, char* extension, unsigned int lba, void* buffer) {
-    static RootDirEntry entries[1000];
-    listRootDir(controller, driveNumber, lba, entries);
-    for (int i = 0; entries[i].name[0] != 0; i++) {
+    listRootDir(controller, driveNumber, lba, rootDir);
+    for (int i = 0; rootDir[i].name[0] != 0; i++) {
         // strings must be null-terminated
         char nameStr[9] = {0};
-        memcpy(entries[i].name, nameStr, 8);
+        memcpy(rootDir[i].name, nameStr, 8);
         char extStr[4] = {0};
-        memcpy(entries[i].extension, extStr, 3);
+        memcpy(rootDir[i].extension, extStr, 3);
         if (strcmp(name, nameStr) && strcmp(extension, extStr)) {
             Bpb bpb = readbpb(controller, driveNumber, lba);
-            unsigned int readSector = clusterToSector(entries[i].cluster, bpb, lba);
+            unsigned int readSector = clusterToSector(rootDir[i].cluster, bpb, lba);
             unsigned char partLba[6] = {0};
             partLba[0] = readSector & 0x000000ff;
             partLba[1] = (readSector & 0x0000ff00) >> 8;
             partLba[2] = (readSector & 0x00ff0000) >> 16;
             partLba[3] = (readSector & 0xff000000) >> 24;
-            return ata_read(controller, driveNumber, partLba, entries[i].size / 512 + 1, buffer);
+            return ata_read(controller, driveNumber, partLba, rootDir[i].size / 512 + 1, buffer);
         }
     }
-    print("File not found\r\n");
     return 1;
 }

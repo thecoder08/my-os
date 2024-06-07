@@ -31,7 +31,7 @@ void kmain() {
       init_timer(50);
       initKeyboard();
       initSyscall();
-      print("Welcome to My OS! Use the \"help\" command for help. Loading programs from disk isn't yet supported so only builtin commands will work.\r\n");
+      print("Welcome to My OS! Use the \"help\" command for help. This is the basic shell. To get a more advanced shell, run \"loadshell\".\r\n");
       enableCursor(14, 15);
       while(1) {
             print("> ");
@@ -134,12 +134,12 @@ void kmain() {
                   if (entries[0].type == 4) { // if first partition is fat16-formatted, try loading and running shell.bin
                         int readStatus = readFile(0, 0, "SHELL   ", "BIN", entries[0].lba, (void*) 0x10000);
                         if (readStatus == 0) {
-                              print("Read file sucessfully\r\n");
+                              print("Loaded shell sucessfully.\r\n");
+                              asm("call $0x08,$0x10000");
                         }
                         else {
-                              print("Failed to read file\r\n");
+                              print("Failed to load shell.\r\n");
                         }
-                        asm("call $0x08,$0x10000");
                   }
             }
             else {
