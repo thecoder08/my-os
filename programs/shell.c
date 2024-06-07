@@ -10,7 +10,8 @@ void _start() {
     while(1) {
         print("Shell> ");
         scan(input);
-        if (strcmp(input, "help")) {
+        if (strcmp(input, "")) {}
+        else if (strcmp(input, "help")) {
             print("This is a shell running independently from the OS kernel.\r\n");
             print("It is capable of more the the kernel's shell.\r\n");
             print("Type a command to run an executable file.\r\n");
