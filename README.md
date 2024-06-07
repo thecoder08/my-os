@@ -14,9 +14,9 @@ It supports:
 - [-] Dynamic memory allocation (half done, currently malloc just returns an increasing pointer and cannot be free'd)
 - [-] FAT16 FS support (read-only at the moment)
 - [x] Partition table (needs to be written once we have ATA driver)
-- [ ] Graphical Shell with terminal emulator, calculator, and text editor
 - [x] Loading an external shell program from disk
-
+- [ ] Graphical Shell with terminal emulator, calculator, and text editor
+- [ ] Preemptive multitasking with round-robin scheduler
 ## Running the OS
 Use
 ```
