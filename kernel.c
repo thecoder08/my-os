@@ -12,8 +12,6 @@
 #include "ata.h"
 #include "syscall.h"
 
-char input[0x100];
-
 void mouse(unsigned char flags, unsigned char x, unsigned char y) {
       print("Flags: ");
       print(itoa(flags, 2));
@@ -33,6 +31,7 @@ void kmain() {
       initSyscall();
       print("Welcome to My OS! Use the \"help\" command for help. This is the basic shell. To get a more advanced shell, run \"loadshell\".\r\n");
       enableCursor(14, 15);
+      char input[0x100];
       while(1) {
             print("> ");
             scan(input);
