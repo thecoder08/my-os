@@ -1,5 +1,7 @@
 *.o
 *.elf
 *.img
+*.bin
+shell
+test
 build
-disk.raw
