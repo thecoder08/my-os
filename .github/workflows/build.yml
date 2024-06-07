@@ -13,12 +13,6 @@ jobs:
 
       - name: Install NASM
         run: sudo apt install nasm -y
-
-      - name: Build Kernel
-        run: make kernel.elf
-
-      - name: Build Programs
-        run: cd programs && make && cd ..
         
       - name: Build Image
         run: make myos.img
