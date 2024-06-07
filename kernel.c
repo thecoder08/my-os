@@ -44,7 +44,7 @@ void kmain() {
                   print("cttySERIAL: Change the TTY to the serial port.\r\n");
                   print("halt: Stop the OS.\r\n");
                   print("graphics: Try changing the graphics mode and drawing to the screen.\r\n");
-                  print("mouse: Test PS/2 mouse input\r\n");
+                  print("mouse: Test PS/2 mouse input.\r\n");
                   print("ATA: enumerate ATA drives.\r\n");
                   print("loadshell: Tries loading and running SHELL.BIN from the root directory of FAT16 formatted HDD.\r\n");
 
