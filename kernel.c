@@ -11,6 +11,10 @@
 #include "fat16.h"
 #include "ata.h"
 #include "syscall.h"
+#include "scheduler.h"
+#include "graphics.h"
+
+int textMode = 0;
 
 void mouse(unsigned char flags, unsigned char x, unsigned char y) {
       print("Flags: ");
@@ -22,13 +26,7 @@ void mouse(unsigned char flags, unsigned char x, unsigned char y) {
       print("\r\n");
 }
 
-void kmain() {
-      clear(' ', 0x07);
-      initializeGdt();
-      initializeIdt();
-      init_timer(50);
-      initKeyboard();
-      initSyscall();
+void shellEntry() { // this has to be made into its own function, so that it can be preempted
       print("Welcome to My OS! Use the \"help\" command for help. This is the basic shell. To get a more advanced shell, run \"loadshell\".\r\n");
       enableCursor(14, 15);
       char input[0x100];
@@ -42,10 +40,11 @@ void kmain() {
                   print("cttyVGA: Change the TTY to VGA.\r\n");
                   print("cttySERIAL: Change the TTY to the serial port.\r\n");
                   print("halt: Stop the OS.\r\n");
-                  print("graphics: Try changing the graphics mode and drawing to the screen.\r\n");
+                  print("graphics: Try drawing to the screen.\r\n");
                   print("mouse: Test PS/2 mouse input.\r\n");
                   print("ATA: enumerate ATA drives.\r\n");
                   print("loadshell: Tries loading and running SHELL.BIN from the root directory of FAT16 formatted HDD.\r\n");
+                  print("ctxswitch: Try performing a context switch to the shell. (Requires shell to be loaded first)\r\n");
 
             }
             else if (strcmp(input, "clear")) {
@@ -61,8 +60,7 @@ void kmain() {
                   while(1);
             }
             else if (strcmp(input, "graphics")) {
-                  setVideoMode(1);
-                  memset((char*) 0x000a0000, 4, 50);
+                  circle(100, 100, 10, 0xffff0000);
             }
             else if (strcmp(input, "mouse")) {
                   initMouse(mouse);
@@ -131,10 +129,10 @@ void kmain() {
                         }
                   }
                   if (entries[0].type == 4) { // if first partition is fat16-formatted, try loading and running shell.bin
-                        int readStatus = readFile(0, 0, "SHELL   ", "BIN", entries[0].lba, (void*) 0x10000);
+                        int readStatus = readFile(0, 0, "SHELL   ", "BIN", entries[0].lba, (void*) 0x20000);
                         if (readStatus == 0) {
                               print("Loaded shell sucessfully.\r\n");
-                              asm("call $0x08,$0x10000");
+                              asm("call $0x08,$0x20000");
                         }
                         else {
                               print("Failed to load shell.\r\n");
@@ -147,4 +145,68 @@ void kmain() {
                   print("\" means.\r\n");
             }
       }
+}
+
+void task1() {
+      while(1) {
+            print("a");
+      }
+}
+
+void task2() {
+      while(1) {
+            print("b");
+      }
+}
+
+Framebuffer readFramebufferInfo(void* mbInfo) {
+      Framebuffer fb;
+      fb.data = 0; // if we can't find a framebuffer, data is 0
+      unsigned int flags = *(unsigned int*)mbInfo;
+      if (flags & (1 << 12)) { // if fb section exists
+            unsigned int type = *(unsigned int*)(mbInfo + 109);
+            if (type == 2) { // if fb type is not text mode
+                  return fb;
+            }
+            fb.data = *(int**)(mbInfo + 88);
+            fb.width = *(int*)(mbInfo + 100);
+            fb.height = *(int*)(mbInfo + 104);
+      }
+      return fb;
+}
+
+void kmain() {
+      int magic;
+      void* mbInfo;
+      asm("" : "=a" (magic), "=b" (mbInfo):);
+      Framebuffer fb = readFramebufferInfo(mbInfo);
+      if (fb.data) { // using graphics mode
+            textMode = 0;
+            setFb(fb);
+            circle(500, 500, 100, 0xff00ff00);
+      }
+      else {
+            textMode = 1;
+      }
+      clear(' ', 0x07);
+      if (textMode) {
+            print("Using VGA text mode.\r\n");
+      }
+      else {
+            print("Using framebuffer console.\r\n");
+      }
+      initializeGdt();
+      initializeIdt();
+      initKeyboard();
+      initSyscall();
+      print("magic number: 0x");
+      print(itoa(magic, 16));
+      print("\r\n");
+      
+      registerProcess(task1); // add first process
+      registerProcess(task2);
+      print("Registered tasks.\r\n");
+      init_timer(5); // enable preemption
+      print("Waiting for preemption...\r\n");
+      shellEntry();
 }

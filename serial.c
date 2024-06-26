@@ -3,6 +3,7 @@
 
 void serialPrint(char* string) {
     for (int i = 0; string[i] != 0; i++) {
+        while ((in(0x03fd) & 0x20) == 0);
         out(0x03f8, string[i]);
     }
 }

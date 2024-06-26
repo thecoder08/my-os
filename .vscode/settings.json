@@ -11,6 +11,7 @@
         "parallel.h": "c",
         "algorithm": "c",
         "terminal.h": "c",
-        "typeinfo": "c"
+        "typeinfo": "c",
+        "vga.h": "c"
     }
 }

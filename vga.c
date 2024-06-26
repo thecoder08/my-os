@@ -1,11 +1,23 @@
 #include "io.h"
 #include "vga.h"
 #include "mem.h"
+#include "graphics.h"
+
+extern int fontFile; // this is an int because its pointer becomes an int*; i.e. an array.
+extern int textMode;
+extern Framebuffer image;
+int cursorX;
+int cursorY;
 
 void setChar(char character, char color, int x, int y) {
-    char* cell = (char*) 0x000b8000 + ((y * 80 + x) * 2);
-    *cell = character;
-    *(cell + 1) = color;
+	if (textMode) {
+		char* cell = (char*) 0x000b8000 + ((y * 80 + x) * 2);
+    	*cell = character;
+    	*(cell + 1) = color;
+	}
+	else {
+		drawBuffer(x*9, y*16, 9, 16, &fontFile + character*16*9);
+	}
 }
 
 void setVgaRegister3c0(char index, char data) {
@@ -27,10 +39,38 @@ char getVgaRegister(unsigned short port, char index) {
 	return in(port + 1);
 }
 
+int cmpChar(char* position, char character) {
+	for (int i = 0; i < 16; i++) {
+		if (!memcmp(position + i*image.width*4, (char*)(&fontFile + character*16*9 + i*9), 9*4)) {
+			return 0;
+		}
+	}
+	return 1;
+}
+
 void setCursor(int x, int y) {
-	short pos = y * 80 + x;
-	setVgaRegister(0x3d4, 0x0f, (char) (pos & 0xFF));
-	setVgaRegister(0x3d4, 0x0e, (char) ((pos >> 8) & 0xFF));
+	if (textMode) {
+		short pos = y * 80 + x;
+		setVgaRegister(0x3d4, 0x0f, (char) (pos & 0xFF));
+		setVgaRegister(0x3d4, 0x0e, (char) ((pos >> 8) & 0xFF));
+	}
+	else {
+		/*for (int i = 0; i < 25; i++) {
+			for (int j = 0; i < 80; j++) {
+				if (cmpChar((char*)(image.data + (i*image.width*16) + (j*9)), ' ')) {
+					setChar('#', 0x07, j, i);
+				}
+			}
+		}*/
+		if (cmpChar((char*)(image.data + (cursorY*image.width*16) + (cursorX*9)), '_')) { // if the old cursor position is still shown as a cursor
+			setChar(' ', 0x07, cursorX, cursorY); // overwrite it with a space
+		}
+		cursorX = x;
+		cursorY = y;
+		if (cmpChar((char*)(image.data + (cursorY*image.width*16) + (cursorX*9)), ' ')) {
+			setChar('_', 0x07, cursorX, cursorY);
+		}
+	}
 }
 
 void enableCursor(char cursor_start, char cursor_end) {
@@ -75,10 +115,19 @@ void writeChar(char character) {
 		currentY++;
 	}
 	if (currentY > 24) {
-		for (int row = 0; row < 24; row++) {
-			char* thisRow = (char*) 0x000b8000 + 160*row;
-			char* nextRow = (char*) 0x000b8000 + 160*(row+1);
-			memcpy(nextRow, thisRow, 160);
+		if (textMode) {
+			for (int row = 0; row < 24; row++) {
+				char* thisRow = (char*) 0x000b8000 + 160*row;
+				char* nextRow = (char*) 0x000b8000 + 160*(row+1);
+				memcpy(nextRow, thisRow, 160);
+			}
+		}
+		else {
+			for (int row = 0; row < 24; row++) {
+				char* thisRow = (char*) image.data + image.width*16*4*row;
+				char* nextRow = (char*) image.data + image.width*16*4*(row+1);
+				memcpy(nextRow, thisRow, image.width*16*4);
+			}
 		}
 		for (int x = 0; x < 80; x++) {
 			setChar(' ', 0x07, x, 24);
@@ -91,26 +140,5 @@ void writeChar(char character) {
 void vgaPrint(char* string) {
 	for (int i = 0; string[i] != 0; i++) {
 		writeChar(string[i]);
-	}
-}
-
-// mode 1 is 320x200 256 color, mode 0 is 80x25 16 color text
-void setVideoMode(int mode) {
-	if (mode) {
-		setVgaRegister3c0(0x10, 0x41);
-		setVgaRegister3c0(0x11, 0x00);
-		setVgaRegister3c0(0x12, 0x0F);
-		setVgaRegister3c0(0x13, 0x00);
-		setVgaRegister3c0(0x14, 0x00);
-		out(0x3c2, 0x63);
-		setVgaRegister(0x3c4, 0x01, 0x01);
-		setVgaRegister(0x3c4, 0x03, 0x00);
-		setVgaRegister(0x3c4, 0x04, 0x0e);
-		setVgaRegister(0x3ce, 0x05, 0x40);
-		setVgaRegister(0x3ce, 0x06, 0x05);
-		
-	}
-	else {
-
 	}
 }

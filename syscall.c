@@ -28,9 +28,9 @@ __attribute__((interrupt)) void syscall(struct interrupt_frame* frame) {
                 char extension[4] = {0};
                 memcpy(param, name, 8);
                 memcpy(param+8, extension, 3);
-                int readStatus = readFile(0, 0, name, extension, entries[0].lba, (void*) 0x20000);
+                int readStatus = readFile(0, 0, name, extension, entries[0].lba, (void*) 0x30000);
                 if (readStatus == 0) {
-                    asm("call $0x08,$0x20000");
+                    asm("call $0x08,$0x30000");
                     asm("mov $0,%esi");
                     return;
                 }

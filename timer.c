@@ -4,20 +4,15 @@
 #include "terminal.h"
 #include "io.h"
 
-unsigned int tick = 0;
+void contextSwitch();
 
-__attribute__((interrupt)) void timer_handler(struct interrupt_frame* frame) {
-    /*tick++;
-    print("Tick: ");
-    char* tick_ascii = itoa(tick, 10);
-    print(tick_ascii);
-    print("\r\n");*/
+__attribute__((interrupt)) void timerPlaceholder(struct interrupt_frame* frame) {
     sendEOI(0);
 }
 
 void init_timer(unsigned int freq) {
     /* Install the function we just wrote */
-    addIrqHandler(0, timer_handler);
+    addIrqHandler(0, timerPlaceholder);
 
     /* Get the PIT value: hardware clock at 1193180 Hz */
     unsigned int divisor = 1193180 / freq;
