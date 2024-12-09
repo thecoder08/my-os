@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Get repository code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Install NASM
         run: sudo apt install nasm -y
@@ -18,7 +18,7 @@ jobs:
         run: make myos.img
 
       - name: Upload image
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: myos.img
           path: myos.img
