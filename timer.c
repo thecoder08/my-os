@@ -4,7 +4,7 @@
 #include "terminal.h"
 #include "io.h"
 
-void contextSwitch();
+void ctxsw();
 
 __attribute__((interrupt)) void timerPlaceholder(struct interrupt_frame* frame) {
     sendEOI(0);
@@ -12,7 +12,7 @@ __attribute__((interrupt)) void timerPlaceholder(struct interrupt_frame* frame) 
 
 void init_timer(unsigned int freq) {
     /* Install the function we just wrote */
-    addIrqHandler(0, timerPlaceholder);
+    addIrqHandler(0, ctxsw);
 
     /* Get the PIT value: hardware clock at 1193180 Hz */
     unsigned int divisor = 1193180 / freq;

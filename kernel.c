@@ -132,7 +132,9 @@ void shellEntry() { // this has to be made into its own function, so that it can
                         int readStatus = readFile(0, 0, "SHELL   ", "BIN", entries[0].lba, (void*) 0x20000);
                         if (readStatus == 0) {
                               print("Loaded shell sucessfully.\r\n");
-                              asm("call $0x08,$0x20000");
+                              //asm("call $0x08,$0x20000");
+                              registerProcess((void*) 0x20000); // woohoo, I can do this now!
+                              while(1);
                         }
                         else {
                               print("Failed to load shell.\r\n");
@@ -144,18 +146,6 @@ void shellEntry() { // this has to be made into its own function, so that it can
                   print(input);
                   print("\" means.\r\n");
             }
-      }
-}
-
-void task1() {
-      while(1) {
-            print("a");
-      }
-}
-
-void task2() {
-      while(1) {
-            print("b");
       }
 }
 
@@ -203,10 +193,9 @@ void kmain() {
       print(itoa(magic, 16));
       print("\r\n");
       
-      registerProcess(task1); // add first process
-      registerProcess(task2);
+      registerProcess(shellEntry); // add first process
       print("Registered tasks.\r\n");
       init_timer(5); // enable preemption
       print("Waiting for preemption...\r\n");
-      shellEntry();
+      while(1);
 }

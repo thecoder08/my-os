@@ -12,7 +12,7 @@ int scanning = 0;
 void keyboardScan(char* dataBuffer) {
     buffer = dataBuffer;
     scanning = 1;
-    while (scanning == 1);
+    while(scanning);
 }
 
 void keyboardHander(unsigned char inbyte) {

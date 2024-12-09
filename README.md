@@ -16,7 +16,7 @@ It supports:
 - [x] Partition table (needs to be written once we have ATA driver)
 - [x] Loading an external shell program from disk
 - [ ] Graphical Shell with terminal emulator, calculator, and text editor
-- [ ] Preemptive multitasking with round-robin scheduler
+- [x] Preemptive multitasking with round-robin scheduler
 ## Running the OS
 Use
 ```

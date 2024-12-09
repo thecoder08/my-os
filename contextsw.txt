@@ -1,0 +1,14 @@
+--- Note on context switching ---
+when an interrupt occurs, CPU pushes following registers to stack:
+
+EFLAGS, CS, EIP
+
+Note that although CS is a 16-bit register, the push is still 32-bit. (takes up 4 bytes)
+
+Then we call pushad, which pushes following:
+
+EAX, ECX, EDX, EBX, original ESP, EBP, ESI, EDI
+
+All of these pushes are 4 bytes.
+
+Therefore, in order to set up the stack frame of a new process, we need to set initial values for all of these registers. Most important being EIP and ESP. We do this by pushing the values to the stack in that order.
