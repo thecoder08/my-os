@@ -1,1 +1,1 @@
-void initMouse(void (*mouseDataHandler)(unsigned char flags, unsigned char x, unsigned char y));
+void initMouse(void (*mouseDataHandler)(unsigned char flags, short x, short y));

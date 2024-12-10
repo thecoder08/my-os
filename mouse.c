@@ -6,7 +6,7 @@ unsigned char flagByte;
 unsigned char xByte;
 unsigned char yByte;
 
-void (*mouseData)(unsigned char flags, unsigned char x, unsigned char y);
+void (*mouseData)(unsigned char flags, short x, short y);
 
 void mouseHandler(unsigned char byte) {
     if (bytePosition == -1 && byte == 0xfa) {
@@ -26,14 +26,14 @@ void mouseHandler(unsigned char byte) {
     if (bytePosition == 2) {
         yByte = byte;
         bytePosition = 0;
-        mouseData(flagByte, xByte, yByte);
+        mouseData(flagByte, (short)xByte - (((short)flagByte << 4) & 0x100), (((short)flagByte << 3) & 0x100) - (short)yByte);
         return;
     }
 }
 
-void initMouse(void (*mouseDataHandler)(unsigned char flags, unsigned char x, unsigned char y)) {
+void initMouse(void (*mouseDataHandler)(unsigned char flags, short x, short y)) {
     mouseData = mouseDataHandler;
+    init_ps2_2(mouseHandler);
     // enable data reporting
     write_ps2_2(0xf4);
-    init_ps2_2(mouseHandler);
 }

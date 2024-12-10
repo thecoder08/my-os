@@ -16,7 +16,10 @@
 
 int textMode = 0;
 
-void mouse(unsigned char flags, unsigned char x, unsigned char y) {
+int x = 0;
+int y = 0;
+
+void mouse(unsigned char flags, short deltaX, short deltaY) {
       print("Flags: ");
       print(itoa(flags, 2));
       print(" x: ");
@@ -24,6 +27,9 @@ void mouse(unsigned char flags, unsigned char x, unsigned char y) {
       print(" y: ");
       print(itoa(y, 10));
       print("\r\n");
+      x += deltaX;
+      y += deltaY;
+      circle(x, y, 10, 0xffffffff);
 }
 
 void shellEntry() { // this has to be made into its own function, so that it can be preempted
@@ -192,7 +198,7 @@ void kmain() {
       print("magic number: 0x");
       print(itoa(magic, 16));
       print("\r\n");
-      
+
       registerProcess(shellEntry); // add first process
       print("Registered tasks.\r\n");
       init_timer(5); // enable preemption

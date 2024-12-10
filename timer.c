@@ -17,7 +17,7 @@ void init_timer(unsigned int freq) {
     /* Get the PIT value: hardware clock at 1193180 Hz */
     unsigned int divisor = 1193180 / freq;
     unsigned char low  = (unsigned char)(divisor & 0xFF);
-    unsigned char high = (unsigned char)( (divisor >> 8) & 0xFF);
+    unsigned char high = (unsigned char)((divisor >> 8) & 0xFF);
     /* Send the command */
     out(0x43, 0x36); /* Command port */
     out(0x40, low);
