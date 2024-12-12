@@ -2,7 +2,7 @@
 #include "interrupts.h"
 #include "mem.h"
 #include "keyboard.h"
-#include "mouse.h"
+#include "gui.h"
 #include "terminal.h"
 #include "string.h"
 #include "vga.h"
@@ -15,22 +15,6 @@
 #include "graphics.h"
 
 int textMode = 0;
-
-int x = 0;
-int y = 0;
-
-void mouse(unsigned char flags, short deltaX, short deltaY) {
-      print("Flags: ");
-      print(itoa(flags, 2));
-      print(" x: ");
-      print(itoa(x, 10));
-      print(" y: ");
-      print(itoa(y, 10));
-      print("\r\n");
-      x += deltaX;
-      y += deltaY;
-      circle(x, y, 10, 0xffffffff);
-}
 
 void shellEntry() { // this has to be made into its own function, so that it can be preempted
       print("Welcome to My OS! Use the \"help\" command for help. This is the basic shell. To get a more advanced shell, run \"loadshell\".\r\n");
@@ -47,7 +31,7 @@ void shellEntry() { // this has to be made into its own function, so that it can
                   print("cttySERIAL: Change the TTY to the serial port.\r\n");
                   print("halt: Stop the OS.\r\n");
                   print("graphics: Try drawing to the screen.\r\n");
-                  print("mouse: Test PS/2 mouse input.\r\n");
+                  print("gui Launch the GUI.\r\n");
                   print("ATA: enumerate ATA drives.\r\n");
                   print("loadshell: Tries loading and running SHELL.BIN from the root directory of FAT16 formatted HDD.\r\n");
                   print("ctxswitch: Try performing a context switch to the shell. (Requires shell to be loaded first)\r\n");
@@ -68,8 +52,8 @@ void shellEntry() { // this has to be made into its own function, so that it can
             else if (strcmp(input, "graphics")) {
                   circle(100, 100, 10, 0xffff0000);
             }
-            else if (strcmp(input, "mouse")) {
-                  initMouse(mouse);
+            else if (strcmp(input, "gui")) {
+                  initGui();
             }
             else if (strcmp(input, "ATA")) {
                   print("Running ATA drive enumeration.\r\n");

@@ -1,5 +1,5 @@
 C_SRC = $(wildcard *.c)
-ASM_SRC = $(filter-out multiboot.asm, $(wildcard *.asm))
+ASM_SRC = $(filter-out multiboot_gdt.asm, $(wildcard *.asm))
 OBJ = $(ASM_SRC:.asm=.o) $(C_SRC:.c=.o)
 
 run: myos.img
@@ -22,7 +22,7 @@ myos.img: kernel.elf grub.cfg myos.sfdisk pgms
 pgms:
 	$(MAKE) -C programs
 
-kernel.elf: multiboot.o ${OBJ}
+kernel.elf: multiboot_gdt.o ${OBJ}
 	ld $^ -melf_i386 -e kmain -Ttext 0x0 -o $@
 
 %.o: %.asm

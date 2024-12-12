@@ -37,3 +37,13 @@ void drawBuffer(int x, int y, int width, int height, int* source) {
     }
   }
 }
+
+void alphaBuffer(int x, int y, int width, int height, int* source) {
+  for (int i = 0; i < height; i++) {
+    for (int j = 0; j < width; j++) {
+      if ((source[i * width + j] & 0xff000000) == 0xff000000) {
+        plot(x + j, y + i, source[i * width + j]);
+      }
+    }
+  }
+}
