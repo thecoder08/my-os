@@ -2,6 +2,6 @@ void setChar(char character, char color, int collum, int row);
 void setCursor(int x, int y);
 void enableCursor(char cursor_start, char cursor_end);
 void disableCursor();
-void clear(char character, char color);
+void clearText(char character, char color);
 void writeChar(char character);
 void vgaPrint(char* string);

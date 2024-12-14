@@ -1,6 +1,17 @@
 #include "gui.h"
 #include "graphics.h"
 #include "mouse.h"
+#include "mem.h"
+
+typedef struct _guiapp {
+    struct _guiapp* next;
+    int x;
+    int y;
+    int width;
+    int height;
+} GuiApp;
+
+GuiApp* apps; // head
 
 int x = 0;
 int y = 0;
@@ -43,6 +54,20 @@ void mouse(unsigned char flags, short deltaX, short deltaY) {
     else {
         alphaBuffer(x, y, 20, 20, &cursorImage);
     }
+}
+
+void initWindow(int width, int height, const char* title) {
+    GuiApp* newApp = malloc(sizeof(GuiApp));
+    newApp->width = width;
+    newApp->height = height;
+    newApp->x = 0;
+    newApp->y = 0;
+    newApp->next = 0;
+    GuiApp* app = apps;
+    while(app->next != 0) {
+        app = app->next;
+    }
+    app->next = newApp;
 }
 
 void initGui() {

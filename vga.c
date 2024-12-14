@@ -85,7 +85,7 @@ void disableCursor() {
 int currentX = 0;
 int currentY = 0;
 
-void clear(char character, char color) {
+void clearText(char character, char color) {
   for (int i = 0; i < 25; i++){
 	  for (int j = 0; j < 80; j++){
 		  setChar(character, color, j, i);

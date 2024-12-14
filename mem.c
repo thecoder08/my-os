@@ -3,8 +3,8 @@
 // the heap is just a pointer to some memory. Malloc increases it and returns the new result.
 char* heap = (char*) 0x00040000;
 
-char* malloc(int bytes) {
-    char* result = heap;
+void* malloc(int bytes) {
+    void* result = heap;
     heap += bytes;
     return result;
 }

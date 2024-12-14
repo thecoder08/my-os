@@ -22,7 +22,7 @@ newtask:
     mov [oldstack], esp
     mov esp, [newTaskStack]
     pushfd ; EFLAGS
-    push DWORD cs ; CS
+    push cs ; CS
     push DWORD [newTaskEntry] ; EIP
     push DWORD 0 ; EAX
     push DWORD 0 ; ECX

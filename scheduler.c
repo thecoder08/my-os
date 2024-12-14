@@ -6,9 +6,8 @@
 
 void* espVal;
 
-Process processTable[100]; // TODO: Make this a linked list
-int runningProcesses = 0; // total number of loaded processes
-int activeProcess = 10; // index of process that is currently running. We start it at 10 so that cpu context before preemption doesn't overwrite first processes.
+Process* activeProcess;
+int newProcessId = 0;
 
 void* newTaskStack;
 void* newTaskEntry;
@@ -17,26 +16,57 @@ void newtask();
 
 void contextSwitch(struct interrupt_frame* frame) {
     // save esp to table
-    processTable[activeProcess].stackPointer = espVal;
+    activeProcess->stackPointer = espVal;
     // select new process
-    activeProcess++;
-    if (activeProcess >= runningProcesses) {
-        activeProcess = 0;
-    }
+    activeProcess = activeProcess->next;
     // load esp from table
-    espVal = processTable[activeProcess].stackPointer;
+    espVal = activeProcess->stackPointer;
     // return
     sendEOI(0);
 }
 
-void registerProcess(void* entryPoint) {
+int registerProcess(void* entryPoint) {
+    newProcessId++;
     serialPrint("NEWTASK ");
-    serialPrint(itoa(runningProcesses, 10));
+    serialPrint(itoa(newProcessId, 10));
     serialPrint("\r\n");
-    processTable[runningProcesses].stackPointer = malloc(0x1000) + 0x1000; // we add this because the stack grows down
+    Process* newProcess = malloc(sizeof(Process));
+    newProcess->pid = newProcessId;
+    newProcess->next = activeProcess->next;
+    activeProcess->next = newProcess;
+    newProcess->stackPointer = malloc(0x1000) + 0x1000; // we add this because the stack grows down
     newTaskEntry = entryPoint;
-    newTaskStack = processTable[runningProcesses].stackPointer;
+    newTaskStack = newProcess->stackPointer;
     newtask();
-    processTable[runningProcesses].stackPointer -= 44; // newtask pushes a bunch of stuff to the stack
-    runningProcesses++;
+    newProcess->stackPointer -= 44; // newtask pushes a bunch of stuff to the stack
+    return newProcess->pid;
+}
+
+void initScheduler() {
+    activeProcess = malloc(sizeof(Process));
+    activeProcess->next = activeProcess;
+    activeProcess->stackPointer = 0;
+    activeProcess->pid = 0;
+}
+
+int deleteProcess(int killPid) { // 0 if process deleted, 1, if not found
+    serialPrint("Deleting ");
+    serialPrint(itoa(killPid, 10));
+    serialPrint("...\r\n");
+    Process* p = activeProcess;
+    do {
+        if (p->next->pid == killPid) {
+            Process* toDelete = p->next;
+            p->next = toDelete->next;
+            // uncomment when we have free()
+            //free(toDelete->stackPointer); // this won't work, we need to track top of stack
+            //free(toDelete);
+            serialPrint("Deleted ");
+            serialPrint(itoa(killPid, 10));
+            serialPrint("\r\n");
+            return 0;
+        }
+        p = p->next;
+    } while (p != activeProcess);
+    return 1;
 }

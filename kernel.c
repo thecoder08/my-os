@@ -13,6 +13,7 @@
 #include "syscall.h"
 #include "scheduler.h"
 #include "graphics.h"
+#include "pong.h"
 
 int textMode = 0;
 
@@ -31,14 +32,14 @@ void shellEntry() { // this has to be made into its own function, so that it can
                   print("cttySERIAL: Change the TTY to the serial port.\r\n");
                   print("halt: Stop the OS.\r\n");
                   print("graphics: Try drawing to the screen.\r\n");
-                  print("gui Launch the GUI.\r\n");
+                  print("gui: Launch the GUI.\r\n");
+                  print("pong: Try the pong demo. Must be launcher after gui.\r\n");
                   print("ATA: enumerate ATA drives.\r\n");
                   print("loadshell: Tries loading and running SHELL.BIN from the root directory of FAT16 formatted HDD.\r\n");
-                  print("ctxswitch: Try performing a context switch to the shell. (Requires shell to be loaded first)\r\n");
 
             }
             else if (strcmp(input, "clear")) {
-                  clear(' ', 0x07);
+                  clearText(' ', 0x07);
             }
             else if (strcmp(input, "cttyVGA")) {
                   ctty(1);
@@ -131,6 +132,9 @@ void shellEntry() { // this has to be made into its own function, so that it can
                         }
                   }
             }
+            else if (strcmp(input, "pong")) {
+                  initPong();
+            }
             else {
                   print("I'm not sure what \"");
                   print(input);
@@ -168,7 +172,7 @@ void kmain() {
       else {
             textMode = 1;
       }
-      clear(' ', 0x07);
+      clearText(' ', 0x07);
       if (textMode) {
             print("Using VGA text mode.\r\n");
       }
@@ -182,10 +186,7 @@ void kmain() {
       print("magic number: 0x");
       print(itoa(magic, 16));
       print("\r\n");
-
-      registerProcess(shellEntry); // add first process
-      print("Registered tasks.\r\n");
+      initScheduler();
       init_timer(5); // enable preemption
-      print("Waiting for preemption...\r\n");
-      while(1);
+      shellEntry(); // First process, PID 0, is already here. It's just whatever was running before first preemption.
 }

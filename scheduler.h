@@ -1,6 +1,8 @@
 typedef struct _process {
     void* stackPointer;
     struct _process* next;
+    int pid;
 } Process;
 
-void registerProcess(void* entryPoint);
+int registerProcess(void* entryPoint);
+void initScheduler();
