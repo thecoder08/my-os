@@ -2,7 +2,7 @@
 #include "vga.h"
 #include "keyboard.h"
 
-char* buffer;
+static char* kbdbuffer;
 char *mapping_default = "\?\?1234567890-=??qwertyuiop[]??asdfghjkl;'`?\\zxcvbnm,./??? ???????????????????????????????";
 char *mapping_shifted = "\?\?!@#$%^&*()_+??QWERTYUIOP{}??ASDFGHJKL:\"~?|ZXCVBNM<>???? ???????????????????????????????";
 int shifted = 0;
@@ -10,9 +10,9 @@ int i = 0;
 int scanning = 0;
 
 void keyboardScan(char* dataBuffer) {
-    buffer = dataBuffer;
+    kbdbuffer = dataBuffer;
     scanning = 1;
-    while(scanning);
+    while(scanning) {asm("hlt");};
 }
 
 void keyboardHander(unsigned char inbyte) {
@@ -38,7 +38,7 @@ void keyboardHander(unsigned char inbyte) {
         else if (inbyte == 0x1c)
         {
             vgaPrint("\r\n");
-            buffer[i] = 0;
+            kbdbuffer[i] = 0;
             i = 0;
             scanning = 0;
             return;
@@ -55,13 +55,13 @@ void keyboardHander(unsigned char inbyte) {
         {
             if (shifted)
             {
-                buffer[i] = mapping_shifted[inbyte];
+                kbdbuffer[i] = mapping_shifted[inbyte];
             }
             else
             {
-                buffer[i] = mapping_default[inbyte];
+                kbdbuffer[i] = mapping_default[inbyte];
             }
-            writeChar(buffer[i]);
+            writeChar(kbdbuffer[i]);
             i++;
         }
     }

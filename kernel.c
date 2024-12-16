@@ -2,6 +2,7 @@
 #include "interrupts.h"
 #include "mem.h"
 #include "keyboard.h"
+#include "graphics.h"
 #include "gui.h"
 #include "terminal.h"
 #include "string.h"
@@ -12,7 +13,6 @@
 #include "ata.h"
 #include "syscall.h"
 #include "scheduler.h"
-#include "graphics.h"
 #include "pong.h"
 
 int textMode = 0;
@@ -33,7 +33,7 @@ void shellEntry() { // this has to be made into its own function, so that it can
                   print("halt: Stop the OS.\r\n");
                   print("graphics: Try drawing to the screen.\r\n");
                   print("gui: Launch the GUI.\r\n");
-                  print("pong: Try the pong demo. Must be launcher after gui.\r\n");
+                  print("pong: Try the pong demo. Must be launched after gui.\r\n");
                   print("ATA: enumerate ATA drives.\r\n");
                   print("loadshell: Tries loading and running SHELL.BIN from the root directory of FAT16 formatted HDD.\r\n");
 
@@ -48,13 +48,14 @@ void shellEntry() { // this has to be made into its own function, so that it can
                   ctty(0);
             }
             else if (strcmp(input, "halt")) {
-                  while(1);
+                  asm("cli");
+                  while(1) {asm("hlt");}
             }
             else if (strcmp(input, "graphics")) {
                   circle(100, 100, 10, 0xffff0000);
             }
             else if (strcmp(input, "gui")) {
-                  initGui();
+                  registerProcess(initGui);
             }
             else if (strcmp(input, "ATA")) {
                   print("Running ATA drive enumeration.\r\n");
@@ -133,7 +134,7 @@ void shellEntry() { // this has to be made into its own function, so that it can
                   }
             }
             else if (strcmp(input, "pong")) {
-                  initPong();
+                  registerProcess(initPong);
             }
             else {
                   print("I'm not sure what \"");
@@ -187,6 +188,7 @@ void kmain() {
       print(itoa(magic, 16));
       print("\r\n");
       initScheduler();
-      init_timer(5); // enable preemption
+      init_timer(1); // enable preemption
+      print("Preemption enabled.\r\n");
       shellEntry(); // First process, PID 0, is already here. It's just whatever was running before first preemption.
 }

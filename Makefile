@@ -3,7 +3,7 @@ ASM_SRC = $(filter-out multiboot_gdt.asm, $(wildcard *.asm))
 OBJ = $(ASM_SRC:.asm=.o) $(C_SRC:.c=.o)
 
 run: myos.img
-	qemu-system-i386 --gdb tcp::1234 -m 4G -hda $^
+	kvm --gdb tcp::1234 -m 4G -hda $^
 
 myos.img: kernel.elf grub.cfg myos.sfdisk pgms
 	dd if=/dev/zero of=$@ bs=1M count=10

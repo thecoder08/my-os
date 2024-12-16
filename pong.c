@@ -1,8 +1,9 @@
 // THIS WILL BE MOVED TO A STANDALONE PROGRAM EVENTUALLY. ONLY IN KERNEL TO TEST GUI AND MULTITASKING.
-#include "gui.h"
 #include "graphics.h"
+#include "gui.h"
 #include "terminal.h"
 #include "pong.h"
+#include "mem.h"
 
 #define WIDTH 600
 #define HEIGHT 400
@@ -31,13 +32,18 @@ char collide(Ball ball, Player player) {
 }
 
 void initPong() {
-    initWindow(WIDTH, HEIGHT, "Pong");
+    int pongId = initWindow(WIDTH, HEIGHT, "Pong");
+    Framebuffer backbuffer = {
+        .width = WIDTH,
+        .height = HEIGHT,
+        .data = malloc(WIDTH*HEIGHT*4)
+    };
 
     Ball ball;
     ball.x = 300;
     ball.y = 200;
-    ball.xVelocity = 3;
-    ball.yVelocity = 3;
+    ball.xVelocity = 1;
+    ball.yVelocity = 1;
     ball.color = 0x00ffffff;
     ball.radius = 5;
 
@@ -82,6 +88,8 @@ void initPong() {
                 }
             }
         }*/
+       player1.y = ball.y - 25;
+       player2.y = ball.y - 25;
         if (player1.upPressed) {
             player1.y -= 5;
         }
@@ -111,11 +119,11 @@ void initPong() {
         ball.x += ball.xVelocity;
         ball.y += ball.yVelocity;
 
-        clear();
-        rectangle(player1.x, player1.y, player1.width, player1.height, player1.color);
-        rectangle(player2.x, player2.y, player2.width, player2.height, player2.color);
-        circle(ball.x, ball.y, ball.radius, ball.color);
-        //updateWindow();
+        clearStruct(backbuffer);
+        rectangleStruct(player1.x, player1.y, player1.width, player1.height, player1.color, backbuffer);
+        rectangleStruct(player2.x, player2.y, player2.width, player2.height, player2.color, backbuffer);
+        circleStruct(ball.x, ball.y, ball.radius, ball.color, backbuffer);
+        updateWindow(pongId, backbuffer);
     }
 
     while(1);

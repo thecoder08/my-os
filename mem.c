@@ -1,7 +1,7 @@
 #include "mem.h"
 
 // the heap is just a pointer to some memory. Malloc increases it and returns the new result.
-char* heap = (char*) 0x00040000;
+void* heap = (void*) 0x00100000; // Heap starts at beginning of high memory so we are out of the way.
 
 void* malloc(int bytes) {
     void* result = heap;

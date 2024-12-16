@@ -165,11 +165,13 @@ __attribute__((interrupt)) void irqHandler(struct interrupt_frame* frame) {
 }
 
 void registerIsr(unsigned char entry, void (*isrHandler) (struct interrupt_frame* frame)) {
+    asm("cli");
     idt[entry].lowOffset = low_16((unsigned int)isrHandler);
     idt[entry].selector = 0x08; // code segment
     idt[entry].always0 = 0;
     idt[entry].flags = 0x8E;
     idt[entry].highOffset = high_16((unsigned int)isrHandler);
+    asm("sti");
 }
 
 /* reinitialize the PIC controllers, giving them specified vector offsets
@@ -264,9 +266,5 @@ void initializeIdt() {
 }
 
 void addIrqHandler(unsigned char irq, void (*irqHandler) (struct interrupt_frame* frame)) {
-    asm("cli");
     registerIsr(irq + 32, irqHandler);
-    asm("lidtl (%0)" : : "r" (&idtDescriptor));
-    asm("sti");
 }
-
