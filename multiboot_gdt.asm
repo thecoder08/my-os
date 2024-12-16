@@ -13,8 +13,8 @@ align 4
     dd MB1_CHECKSUM
     dd 0,0,0,0,0
     dd 0 ; linear graphics
-    dd 0 ; width
-    dd 0 ; height
+    dd 1024 ; width
+    dd 768 ; height
     dd 32 ; depth
 
 ; this sets up our segment registers with the new gdt and jumps into the new code segment
