@@ -54,36 +54,7 @@ GuiApp* findAppById(int appId) {
     return app;
 }
 
-int redrawing = 0;
-void redraw() {
-    if (redrawing) {
-        return;
-    }
-    redrawing = 1;
-    // clear
-    rectangleStruct(0, 0, backbuffer.width, backbuffer.height, 0xff005555, backbuffer);
-    // draw apps in order
-    GuiApp* app = apps;
-    while(app != 0) {
-      bufferStruct(app->x, app->y, app->fb.width, app->fb.height, app->fb.data, backbuffer);
-      app = app->next;
-    }
-    // draw mouse
-    if (mousedown) {
-      alphaBufferStruct(x, y, 20, 20, &fingerImage, backbuffer);
-      if (dragging) {
-          draggedApp->x = x;
-          draggedApp->y = y;
-      }
-    }
-     else {
-      alphaBufferStruct(x, y, 20, 20, &cursorImage, backbuffer);
-    }
-    // update display
-    drawBuffer(0, 0, backbuffer.width, backbuffer.height, backbuffer.data);
-    redrawing = 0;
-}
-
+int shouldRedraw = 1;
 void mouse(unsigned char flags, short deltaX, short deltaY) {
     x += deltaX;
     if (x < 0) {
@@ -114,13 +85,13 @@ void mouse(unsigned char flags, short deltaX, short deltaY) {
         }
     }
     oldMousedown = mousedown;
-    //redraw();
+    shouldRedraw = 1;
 }
 
 void updateWindow(int appId, Framebuffer back) {
     GuiApp* app = findAppById(appId);
     memcpy((char*)back.data, (char*)app->fb.data, back.width*back.height*4);
-    //redraw();
+    shouldRedraw = 1;
 }
 
 void initGui() {
@@ -128,7 +99,31 @@ void initGui() {
     backbuffer.height = image.height;
     backbuffer.width = image.width;
     backbuffer.data = malloc(image.height*image.width*4);
-    while(1) { // I want to get rid of this eventually, have GUI only redraw when needed. Not working well currently though.
-    redraw();
+    while(1) {
+        if (shouldRedraw) {
+            // clear
+            rectangleStruct(0, 0, backbuffer.width, backbuffer.height, 0xff005555, backbuffer);
+            // draw apps in order
+            GuiApp* app = apps;
+            while(app != 0) {
+                bufferStruct(app->x, app->y, app->fb.width, app->fb.height, app->fb.data, backbuffer);
+                app = app->next;
+            }
+            // draw mouse
+            if (mousedown) {
+                alphaBufferStruct(x, y, 20, 20, &fingerImage, backbuffer);
+                if (dragging) {
+                    draggedApp->x = x;
+                    draggedApp->y = y;
+                }
+            }
+            else {
+                alphaBufferStruct(x, y, 20, 20, &cursorImage, backbuffer);
+            }
+            // update display
+            drawBuffer(0, 0, backbuffer.width, backbuffer.height, backbuffer.data);
+            shouldRedraw = 0;
+        }
+        asm("hlt");
     }
 }
