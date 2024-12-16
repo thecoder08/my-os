@@ -63,5 +63,7 @@ __attribute__((interrupt)) void syscall(struct interrupt_frame* frame) {
 }
 
 void initSyscall() {
+    asm("cli");
     registerIsr(0x80, syscall);
+    asm("sti");
 }

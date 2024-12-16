@@ -178,7 +178,11 @@ void kmain() {
             print("Using VGA text mode.\r\n");
       }
       else {
-            print("Using framebuffer console.\r\n");
+            print("Using framebuffer console, ");
+            print(itoa(fb.width, 10));
+            print("x");
+            print(itoa(fb.height, 10));
+            print("\r\n");
       }
       initializeGdt();
       initializeIdt();
