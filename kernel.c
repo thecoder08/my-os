@@ -192,7 +192,7 @@ void kmain() {
       print(itoa(magic, 16));
       print("\r\n");
       initScheduler();
-      init_timer(1); // enable preemption
+      init_timer(100); // enable preemption
       print("Preemption enabled.\r\n");
       shellEntry(); // First process, PID 0, is already here. It's just whatever was running before first preemption.
 }

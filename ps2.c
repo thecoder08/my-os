@@ -8,8 +8,8 @@ void write_ps2_1(unsigned char byte) {
     out(0x60, byte);
 }
 void write_ps2_2(unsigned char byte) {
-    while(in(0x64) & 0x2);
     out(0x64, 0xd4);
+    while(in(0x64) & 0x2);
     out(0x60, byte);
 }
 
@@ -26,7 +26,8 @@ __attribute__((interrupt)) void ps2_2_handler(struct interrupt_frame* frame) {
     sendEOI(12);
 }
 
-void init_ps2_1(void (*ps2_1_data_handler)(unsigned char byte)) { 
+void init_ps2_1(void (*ps2_1_data_handler)(unsigned char byte)) {
+    out(0x64, 0xae);
     out(0x64, 0x60);
     while(in(0x64) & 0x2);
     out(0x60, 0x43);
@@ -35,6 +36,7 @@ void init_ps2_1(void (*ps2_1_data_handler)(unsigned char byte)) {
 }
 
 void init_ps2_2(void (*ps2_2_data_handler)(unsigned char byte)) {
+    out(0x64, 0xa8);
     out(0x64, 0x60);
     while(in(0x64) & 0x2);
     out(0x60, 0x43);
