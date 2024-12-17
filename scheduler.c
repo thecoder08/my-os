@@ -15,6 +15,7 @@ void* newTaskEntry;
 void newtask();
 
 void contextSwitch(struct interrupt_frame* frame) {
+    sendEOI(0);
     // save esp to table
     activeProcess->stackPointer = espVal;
     // select new process
@@ -22,7 +23,6 @@ void contextSwitch(struct interrupt_frame* frame) {
     // load esp from table
     espVal = activeProcess->stackPointer;
     // return
-    sendEOI(0);
 }
 
 int registerProcess(void* entryPoint) {

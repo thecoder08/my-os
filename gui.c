@@ -90,7 +90,7 @@ void mouse(unsigned char flags, short deltaX, short deltaY) {
 
 void updateWindow(int appId, Framebuffer back) {
     GuiApp* app = findAppById(appId);
-    memcpy((char*)back.data, (char*)app->fb.data, back.width*back.height*4);
+    memcpyDwords(back.data, app->fb.data, back.width*back.height);
     shouldRedraw = 1;
 }
 
@@ -121,9 +121,9 @@ void initGui() {
                 alphaBufferStruct(x, y, 20, 20, &cursorImage, backbuffer);
             }
             // update display
-            drawBuffer(0, 0, backbuffer.width, backbuffer.height, backbuffer.data);
+            memcpyDwords(backbuffer.data, image.data, image.height*image.width);
             shouldRedraw = 0;
         }
-        asm("hlt");
+        asm("int $0x20");
     }
 }

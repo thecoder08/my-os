@@ -15,6 +15,12 @@ void memcpy(char* source, char* dest, int length) {
     }
 }
 
+void memcpyDwords(int* source, int* dest, int length) {
+    for (int i = 0; i < length; i++) {
+        dest[i] = source[i];
+    }
+}
+
 void memset(char* dest, char val, int length) {
     for (int i = 0; i < length; i++) {
         dest[i] = val;
