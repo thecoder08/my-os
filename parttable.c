@@ -3,8 +3,7 @@
 
 void readPartitionTable(unsigned char controller, unsigned char driveNumber, PartTableEntry* entries) {
     unsigned char mbr[512];
-    unsigned char lba[6] = {0};
-    ata_read(controller, driveNumber, lba, 1, mbr);
+    ata_read(controller, driveNumber, 0, 1, mbr);
     for (int i = 0; i < 4; i++) {
         entries[i].status = mbr[0x1be + 16*i];
         entries[i].chsStart[0] = mbr[0x1be + 16*i + 1];

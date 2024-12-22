@@ -7,7 +7,7 @@ It supports:
 - [x] PS/2 Keyboard and mouse drivers
 - [x] Serial port driver
 - [x] Parallel port driver
-- [-] ATA Hard disk support (read only)
+- [-] ATA Hard disk support (read only), LBA28 and LBA48
 - [x] Terminal driver, with multiplexing between Serial and VGA/Keyboard
 - [x] A built-in kernel shell, with support for basic commands
 - [x] Basic libc with utility functions (strlen, strcmp, strcpy, strcat, reverse, itoa, memcpy, memset)

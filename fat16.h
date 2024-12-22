@@ -37,9 +37,9 @@ typedef struct {
     unsigned short modDate;
     unsigned short cluster;
     unsigned int size;
-} __attribute__((packed)) RootDirEntry;
+} __attribute__((packed)) DirEntry;
 
 Bpb readbpb(unsigned char controller, unsigned char driveNumber, unsigned int lba);
-void listRootDir(unsigned char controller, unsigned char driveNumber, unsigned int lba, RootDirEntry* entries);
+void listRootDir(unsigned char controller, unsigned char driveNumber, unsigned int lba, DirEntry* entries);
 unsigned int clusterToSector(unsigned int cluster, Bpb bpb, unsigned int lba);
 int readFile(unsigned char controller, unsigned char driveNumber, char* name, char* extension, unsigned int lba, void* buffer);

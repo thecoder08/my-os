@@ -6,7 +6,7 @@
 #include "mem.h"
 #include "scheduler.h"
 
-extern RootDirEntry rootDir[1000]; // doing this to save memory
+extern DirEntry rootDir[1000]; // doing this to save memory
 
 __attribute__((interrupt)) void syscall(struct interrupt_frame* frame) {
     asm("sti");

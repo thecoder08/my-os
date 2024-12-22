@@ -4,16 +4,11 @@
 #include "terminal.h"
 #include "mem.h"
 
-RootDirEntry rootDir[1000];
+DirEntry rootDir[1000];
 
 Bpb readbpb(unsigned char controller, unsigned char driveNumber, unsigned int lba) {
     Bpb bpb;
-    unsigned char partLba[6] = {0};
-    partLba[0] = lba & 0x000000ff;
-    partLba[1] = (lba & 0x0000ff00) >> 8;
-    partLba[2] = (lba & 0x00ff0000) >> 16;
-    partLba[3] = (lba & 0xff000000) >> 24;
-    ata_read(controller, driveNumber, partLba, 1, &bpb);
+    ata_read(controller, driveNumber, lba, 1, &bpb);
     return bpb;
 }
 
@@ -23,16 +18,11 @@ unsigned int clusterToSector(unsigned int cluster, Bpb bpb, unsigned int lba) {
     return clusterAddress / 512; // assumes multiple of 512
 }
 
-void listRootDir(unsigned char controller, unsigned char driveNumber, unsigned int lba, RootDirEntry* entries) {
+void listRootDir(unsigned char controller, unsigned char driveNumber, unsigned int lba, DirEntry* entries) {
     Bpb bpb = readbpb(controller, driveNumber, lba);
     unsigned short root_dir_sectors = ((bpb.numRootDirEntries * 32) + (bpb.bytesPerSector - 1)) / bpb.bytesPerSector;
     unsigned short root_dir_start = bpb.reservedSectors + (bpb.numFats * bpb.sectorsPerFat);
-    unsigned char rootDirLba[6] = {0};
-    rootDirLba[0] = (lba + root_dir_start) & 0x000000ff;
-    rootDirLba[1] = ((lba + root_dir_start) & 0x0000ff00) >> 8;
-    rootDirLba[2] = ((lba + root_dir_start) & 0x00ff0000) >> 16;
-    rootDirLba[3] = ((lba + root_dir_start) & 0xff000000) >> 24;
-    ata_read(controller, driveNumber, rootDirLba, root_dir_sectors, entries);
+    ata_read(controller, driveNumber, lba + root_dir_start, root_dir_sectors, entries);
 }
 
 // reads a file from the specified disk, with the specified name and extension, and the specified partition-start lba (given by reading the partition table)
@@ -47,12 +37,7 @@ int readFile(unsigned char controller, unsigned char driveNumber, char* name, ch
         if (strcmp(name, nameStr) && strcmp(extension, extStr)) {
             Bpb bpb = readbpb(controller, driveNumber, lba);
             unsigned int readSector = clusterToSector(rootDir[i].cluster, bpb, lba);
-            unsigned char partLba[6] = {0};
-            partLba[0] = readSector & 0x000000ff;
-            partLba[1] = (readSector & 0x0000ff00) >> 8;
-            partLba[2] = (readSector & 0x00ff0000) >> 16;
-            partLba[3] = (readSector & 0xff000000) >> 24;
-            return ata_read(controller, driveNumber, partLba, rootDir[i].size / 512 + 1, buffer);
+            return ata_read(controller, driveNumber, readSector, rootDir[i].size / 512 + 1, buffer);
         }
     }
     return 1;
