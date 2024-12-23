@@ -15,7 +15,7 @@ extern int cursorImage;
 extern int fingerImage;
 
 extern Framebuffer image;
-Framebuffer backbuffer;
+static Framebuffer backbuffer;
 
 int oldMousedown = 0;
 int mousedown = 0;

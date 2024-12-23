@@ -10,15 +10,17 @@ void* malloc(int bytes) {
 }
 
 void memcpy(char* source, char* dest, int length) {
-    for (int i = 0; i < length; i++) {
-        dest[i] = source[i];
-    }
+    register char* s asm("esi") = source;
+    register char* d asm("edi") = dest;
+    register int l asm("ecx") = length;
+    asm("rep movsb" : : ""(s), ""(d), ""(l));
 }
 
 void memcpyDwords(int* source, int* dest, int length) {
-    for (int i = 0; i < length; i++) {
-        dest[i] = source[i];
-    }
+    register int* s asm("esi") = source;
+    register int* d asm("edi") = dest;
+    register int l asm("ecx") = length;
+    asm("rep movsd" : : ""(s), ""(d), ""(l));
 }
 
 void memset(char* dest, char val, int length) {

@@ -12,7 +12,7 @@ int scanning = 0;
 void keyboardScan(char* dataBuffer) {
     kbdbuffer = dataBuffer;
     scanning = 1;
-    while(scanning) {asm("hlt");};
+    while(scanning) {asm("hlt");}
 }
 
 void keyboardHander(unsigned char inbyte) {

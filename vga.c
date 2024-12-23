@@ -124,9 +124,9 @@ void writeChar(char character) {
 		}
 		else {
 			for (int row = 0; row < 24; row++) {
-				char* thisRow = (char*) image.data + image.width*16*4*row;
-				char* nextRow = (char*) image.data + image.width*16*4*(row+1);
-				memcpy(nextRow, thisRow, image.width*16*4);
+				int* thisRow = (int*)image.data + image.width*16*row;
+				int* nextRow = (int*)image.data + image.width*16*(row+1);
+				memcpyDwords(nextRow, thisRow, image.width*16);
 			}
 		}
 		for (int x = 0; x < 80; x++) {

@@ -14,6 +14,7 @@
 #include "syscall.h"
 #include "scheduler.h"
 #include "pong.h"
+#include "gterm.h"
 
 int textMode = 0;
 
@@ -36,6 +37,7 @@ void shellEntry() { // this has to be made into its own function, so that it can
                   print("pong: Try the pong demo. Must be launched after gui.\r\n");
                   print("ATA: enumerate ATA drives.\r\n");
                   print("loadshell: Tries loading and running SHELL.BIN from the root directory of FAT16 formatted HDD.\r\n");
+                  print("terminal: Launch the GUI terminal emulator.\r\n");
 
             }
             else if (strcmp(input, "clear")) {
@@ -135,6 +137,9 @@ void shellEntry() { // this has to be made into its own function, so that it can
             }
             else if (strcmp(input, "pong")) {
                   registerProcess(initPong);
+            }
+            else if (strcmp(input, "terminal")) {
+                  registerProcess(initTerm);
             }
             else {
                   print("I'm not sure what \"");
