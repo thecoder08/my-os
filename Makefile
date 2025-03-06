@@ -1,6 +1,7 @@
 C_SRC = $(wildcard *.c)
 ASM_SRC = $(filter-out multiboot_gdt.asm, $(wildcard *.asm))
-OBJ = $(ASM_SRC:.asm=.o) $(C_SRC:.c=.o)
+ZIG_SRC = $(wildcard *.zig)
+OBJ = $(ASM_SRC:.asm=.o) $(C_SRC:.c=.o) $(ZIG_SRC:.zig=.o)
 
 run: myos.img
 	kvm --gdb tcp::1234 -m 1G -hda $^
@@ -30,6 +31,9 @@ kernel.elf: multiboot_gdt.o ${OBJ}
 
 %.o: %.c
 	gcc -ffreestanding -g -m32 -Wall -c $^ -mgeneral-regs-only -fno-pie -fno-stack-protector
+
+%.o: %.zig
+	zig build-obj -target x86-freestanding-none $^
 
 clean:
 	rm -rf *.o *.elf *.img build

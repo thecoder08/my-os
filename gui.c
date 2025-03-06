@@ -20,8 +20,8 @@ static Framebuffer backbuffer;
 int oldMousedown = 0;
 int mousedown = 0;
 
-int checkOverlap(int left1, int right1, int top1, int bottom1, int left2, int right2, int top2, int bottom2) {
-    return left1 <= right2 && right1 >= left2 && top1 <= bottom2 && bottom1 >= top2;
+int checkOverlap(int left, int right, int top, int bottom, int x, int y) {
+    return x >= left && x < right && y >= top && y < bottom;
 }
 
 int initWindow(int width, int height, const char* title) {
@@ -75,7 +75,7 @@ void mouse(unsigned char flags, short deltaX, short deltaY) {
         draggedApp = apps;
         dragging = 0;
         while (draggedApp != 0) {
-            if (checkOverlap(draggedApp->x, draggedApp->x + draggedApp->fb.width, draggedApp->y, draggedApp->y + draggedApp->fb.height, x, x+20, y, y+20)) {
+            if (checkOverlap(draggedApp->x, draggedApp->x + draggedApp->fb.width, draggedApp->y, draggedApp->y + draggedApp->fb.height, x, y)) {
                 dragging = 1;
                 break;
             }
@@ -124,6 +124,6 @@ void initGui() {
             memcpyDwords(backbuffer.data, image.data, image.height*image.width);
             shouldRedraw = 0;
         }
-        asm("int $0x20");
+        asm("int $0x20"); // yield to other programs
     }
 }
